@@ -1,0 +1,114 @@
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
+/* General Styling */
+.education-page {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+  
+  /* Card Grid */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .card {
+    background: linear-gradient(135deg, #ffa726, #ffcc80, #ffa726);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-icon {
+    font-size: 3rem;
+    color: #ff8c00;
+    margin-bottom: 10px;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  
+  .card-description {
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 15px;
+  }
+  
+  .card-button {
+    background-color: #ffd54f;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .card-button:hover {
+    background-color: #ffca28;
+  }
+  
+  /* Video Section */
+  .video-section {
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  .large-video {
+    margin-bottom: 20px;
+  }
+  
+  .large-video video {
+    width: 80%;
+    border-radius: 15px;
+  }
+  
+  .small-video-row {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .small-video {
+    width: 25%;
+    border-radius: 10px;
+  }
+  
+  /* Social Media Icons */
+  .social-media-icons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .social-media-icons i {
+    font-size: 2rem;
+    color: #555;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .social-media-icons i:hover {
+    color: #333;
+  }
+  

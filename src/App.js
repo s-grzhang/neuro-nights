@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { FaStar, FaArrowRight } from 'react-icons/fa';
 import GoalsPage from "./GoalsPage";
 import RewardsPage from "./RewardsPage"
+import EducationPage from "./EducationPage"
 
 const App = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -39,14 +40,15 @@ const App = () => {
               <li><Link to="/">HOME</Link></li>
               <li><Link to="/goals">GOALS</Link></li>
               <li><a href="/rewards">REWARDS</a></li>
-              <li><a href="#data">DATA</a></li>
-              <li><a href="#education">EDUCATION</a></li>
+              <li><a href="/data">DATA</a></li>
+              <li><a href="/education">EDUCATION</a></li>
             </ul>
           </nav>
         </div>
 
         <Routes>
           <Route path="/rewards" element={<RewardsPage />} /> 
+          <Route path="/education" element={<EducationPage />} /> 
           <Route path="/" element={
             <main>
               {/* Home Page Content */}
