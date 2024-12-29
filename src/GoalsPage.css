@@ -4,13 +4,13 @@
 .goals-page {
     display: flex;
     justify-content: center;
+    flex-direction: column; /* Arrange content vertically */
     padding: 20px;
     padding-top: 80px; /* Push content down to avoid header overlap */
   }
   
   /* Box containing the gradient background and cards */
   .goal-box {
-    margin-top: 30px;
     background: linear-gradient(to bottom, #7c4dff, #4a90e2); /* Purple to Blue gradient */
     width: 100%;
     max-width: 600px;
@@ -19,6 +19,7 @@
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     position: relative; /* Allow the content to stay in place */
+    margin-bottom: 30px; /* Add space between goal-box and current-goals */
   }
   
   /* The image at the top part of the goal box */
@@ -27,14 +28,14 @@
     height: auto;
     object-fit: cover;
     border-radius: 15px; /* Space below the image */
-    margin-bottom:-40px;
-    margin-top:-40px;
+    margin-bottom: -40px;
+    margin-top: -40px;
   }
   
   /* Cards container with a column direction */
   .goal-cards {
     display: flex;
-    flex-direction: row; /* Stack cards vertically */
+    flex-direction: row; /* Arrange cards horizontally */
     gap: 15px;
     margin-top: 20px;
   }
@@ -50,17 +51,20 @@
     box-sizing: border-box;
   }
   
+  /* Goal card heading */
   .goal-card h3 {
     font-size: 18px;
     margin-bottom: 10px;
   }
   
+  /* Goal card text */
   .goal-card p {
     font-size: 14px;
-    color: white;
+    color: white; /* Changed to black for better readability */
     margin-bottom: 20px;
   }
   
+  /* SET button style */
   .set-button {
     background-color: #ff7e00; /* Orange button */
     color: white;
@@ -69,6 +73,115 @@
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
+  }
+  
+  /* Hover effect for the button */
+  .set-button:hover {
+    background-color: #e06d00; /* Darker orange on hover */
+  }
+  
+  /* Current Goals section styling */
+  .current-goals {
+    padding: 20px;
+    width: 100%;
+    max-width: 600px; /* Align with the goal-box width */
+  }
+  
+  /* Current Goals section title */
+  .current-goals h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Individual goal items in Current Goals */
+  .goal-item {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: flex-start;
+    margin-bottom: 15px;
+  }
+  
+  /* Goal paragraph text */
+  .goal-item p {
+    flex: 1;
+    font-size: 18px;
+    margin-right: 10px;
+  }
+  
+  /* Trash icon styling */
+  .trash-icon {
+    cursor: pointer;
+    font-size: 20px;
+    color: #ff6347; /* Tomato color */
+    margin-right: 15px;
+  }
+  
+  /* Progress bar styling */
+  .progress-bar {
+    width: 100%;
+    background-color: #e0e0e0;
+    height: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  /* Progress within the progress bar */
+  .progress {
+    height: 100%;
+    background-color: #4caf50;
+    transition: width 0.3s;
+  }
+  
+  /* Prevent margin-bottom on the last goal item */
+  .goal-item:last-child {
+    margin-bottom: 0;
+  }
+  /* GoalsPage.css */
+
+/* New section for setting new goals */
+.set-new-goals {
+    margin-top: 40px;
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  /* Mad-lib box with gradient */
+  .goal-madlib-box {
+    background: linear-gradient(to bottom, #FFEB3B, #FF9800); /* Yellow to orange gradient */
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .goal-madlib-box input {
+    padding: 5px;
+    margin-left: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+  
+  .goal-madlib-box input[type="number"],
+  .goal-madlib-box input[type="text"],
+  .goal-madlib-box input[type="time"] {
+    width: 150px;
+  }
+  
+  /* Button styling */
+  .set-button {
+    background-color: #ff7e00; /* Orange button */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    align-self: flex-start;
   }
   
   .set-button:hover {

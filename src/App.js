@@ -5,6 +5,7 @@ import homePageStars from "./home page stars.png";
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { FaStar, FaArrowRight } from 'react-icons/fa';
 import GoalsPage from "./GoalsPage";
+import RewardsPage from "./RewardsPage"
 
 const App = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -45,6 +46,7 @@ const App = () => {
         </div>
 
         <Routes>
+          <Route path="/rewards" element={<RewardsPage />} /> 
           <Route path="/" element={
             <main>
               {/* Home Page Content */}
