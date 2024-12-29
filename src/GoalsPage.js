@@ -52,6 +52,7 @@ const GoalsPage = () => {
             <li><Link to="/rewards">REWARDS</Link></li> {/* Add this link */}
             <li><Link to="/data">DATA</Link></li>
             <li><Link to="/education">EDUCATION</Link></li>
+            <li><a href="/subscription">SUBSCRIPTION</a></li>
           </ul>
         </nav>
       </div>
