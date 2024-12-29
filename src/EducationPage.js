@@ -12,25 +12,25 @@ const EducationPage = () => {
         <div className="card">
           <FaBrain className="card-icon" />
           <h2 className="card-title">Brain Teasers</h2>
-          <p className="card-description">Challenge your mind with fun puzzles.</p>
+          <p className="card-description">Understand the relationship between mental health disorders & sleep.</p>
           <button className="card-button">400 pts.</button>
         </div>
         <div className="card">
           <FaPuzzlePiece className="card-icon" />
           <h2 className="card-title">Memory Games</h2>
-          <p className="card-description">Train your memory and attention skills.</p>
+          <p className="card-description">Learn the short- and long-term effects of insufficient sleep on memory with some fun brain teasers.</p>
           <button className="card-button">350 pts.</button>
         </div>
         <div className="card">
           <FaGamepad className="card-icon" />
           <h2 className="card-title">Fun Challenges</h2>
-          <p className="card-description">Interactive challenges to enjoy and learn.</p>
+          <p className="card-description">Explore the changes in brain structure and function during the teenage years.</p>
           <button className="card-button">450 pts.</button>
         </div>
         <div className="card">
           <FaQuestionCircle className="card-icon" />
           <h2 className="card-title">Trivia Quiz</h2>
-          <p className="card-description">Test your knowledge on various topics.</p>
+          <p className="card-description">Test your knowledge on the role of sleep in the growth & maintenance of new neurons.</p>
           <button className="card-button">300 pts.</button>
         </div>
       </div>
@@ -39,7 +39,9 @@ const EducationPage = () => {
       <h1>Sleep Exercises</h1>
       <div className="video-section">
         <div className="large-video">
-          <video src="video1.mp4" controls></video>
+        <iframe width="1120" height="630" src="https://www.youtube.com/embed/4wEDoKm40Yc" 
+    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+  </iframe>
         </div>
         <div className="small-video-row">
           <video className="small-video" src="video2.mp4" controls></video>
