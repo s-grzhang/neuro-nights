@@ -38,7 +38,7 @@ const App = () => {
             <ul>
               <li><Link to="/">HOME</Link></li>
               <li><Link to="/goals">GOALS</Link></li>
-              <li><a href="#rewards">REWARDS</a></li>
+              <li><a href="/rewards">REWARDS</a></li>
               <li><a href="#data">DATA</a></li>
               <li><a href="#education">EDUCATION</a></li>
             </ul>
