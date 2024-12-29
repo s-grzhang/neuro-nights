@@ -8,6 +8,7 @@ import GoalsPage from "./GoalsPage";
 import RewardsPage from "./RewardsPage"
 import EducationPage from "./EducationPage"
 import DataPage from "./DataPage"
+import AccountPage from "./AccountPage"
 
 const App = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -38,6 +39,9 @@ const App = () => {
 
           <nav>
             <ul>
+            <div className="account-icon" onClick={() => (window.location.href = "/account")}>
+    👤 {/* Placeholder for account icon */}
+  </div>
               <li><Link to="/">HOME</Link></li>
               <li><Link to="/goals">GOALS</Link></li>
               <li><a href="/rewards">REWARDS</a></li>
@@ -51,6 +55,8 @@ const App = () => {
           <Route path="/rewards" element={<RewardsPage />} /> 
           <Route path="/education" element={<EducationPage />} /> 
           <Route path="/data" element={<DataPage />} /> 
+          <Route path="/account" element={<AccountPage />} />
+
           <Route path="/" element={
             <main>
               {/* Home Page Content */}
