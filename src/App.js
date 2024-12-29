@@ -7,6 +7,7 @@ import { FaStar, FaArrowRight } from 'react-icons/fa';
 import GoalsPage from "./GoalsPage";
 import RewardsPage from "./RewardsPage"
 import EducationPage from "./EducationPage"
+import DataPage from "./DataPage"
 
 const App = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -49,6 +50,7 @@ const App = () => {
         <Routes>
           <Route path="/rewards" element={<RewardsPage />} /> 
           <Route path="/education" element={<EducationPage />} /> 
+          <Route path="/data" element={<DataPage />} /> 
           <Route path="/" element={
             <main>
               {/* Home Page Content */}

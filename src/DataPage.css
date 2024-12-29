@@ -1,0 +1,48 @@
+.data-page {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .today-box {
+    margin-top: 100px;
+    background: linear-gradient(to bottom, yellow, orange);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .chart-container, .line-chart-container {
+    margin: 20px 0;
+    height: 400px;
+    position: relative;
+  }
+  
+  .average-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  
+  .stat-bar {
+    background-color: grey;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .improve-link {
+    margin-top: 20px;
+    text-align: right;
+  }
+  
+  .improve-link a {
+    color: blue;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .improve-link a:hover {
+    text-decoration: underline;
+  }
+  
