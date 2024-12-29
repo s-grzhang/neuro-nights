@@ -9,6 +9,7 @@ import RewardsPage from "./RewardsPage"
 import EducationPage from "./EducationPage"
 import DataPage from "./DataPage"
 import AccountPage from "./AccountPage"
+import SubscriptionPage from "./SubscriptionPage"
 
 const App = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -47,6 +48,7 @@ const App = () => {
               <li><a href="/rewards">REWARDS</a></li>
               <li><a href="/data">DATA</a></li>
               <li><a href="/education">EDUCATION</a></li>
+              <li><a href="/subscription">SUBSCRIPTION</a></li>
             </ul>
           </nav>
         </div>
@@ -56,7 +58,7 @@ const App = () => {
           <Route path="/education" element={<EducationPage />} /> 
           <Route path="/data" element={<DataPage />} /> 
           <Route path="/account" element={<AccountPage />} />
-
+          <Route path="/subscription" element={<SubscriptionPage />} />
           <Route path="/" element={
             <main>
               {/* Home Page Content */}

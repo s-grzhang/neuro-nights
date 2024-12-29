@@ -1,0 +1,51 @@
+.subscription-page {
+    padding: 20px;
+  }
+  
+  .subscription-plan {
+    margin-bottom: 30px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .subscription-plan h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .subscription-plan ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .subscription-plan li {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  
+  .subscribe-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+  
+  .subscribe-btn:hover {
+    background-color: #45a049;
+  }
+  
+  .footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+  }
+  
