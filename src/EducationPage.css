@@ -103,7 +103,7 @@
   
   .social-media-icons i {
     font-size: 2rem;
-    color: #555;
+    color: linear-gradient(135deg, #ffa726, #ffcc80, #ffa726);
     cursor: pointer;
     transition: color 0.3s ease;
   }

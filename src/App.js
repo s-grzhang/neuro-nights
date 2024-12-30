@@ -41,8 +41,21 @@ const App = () => {
           <nav>
             <ul>
             <div className="account-icon" onClick={() => (window.location.href = "/account")}>
-    👤 {/* Placeholder for account icon */}
-  </div>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="account-icon"
+  >
+    <circle cx="12" cy="7" r="4" />
+    <path d="M5.5 17c1.5-2 4-3 6.5-3s5 1 6.5 3" />
+  </svg>
+</div>
+
               <li><Link to="/">HOME</Link></li>
               <li><Link to="/goals">GOALS</Link></li>
               <li><a href="/rewards">REWARDS</a></li>
@@ -103,7 +116,7 @@ const App = () => {
                   <div className="goal-card">
                     <div className="goal-text">
                       <h3>Bedtime</h3>
-                      <p>Sleep by 11 PM & wake up by 9 AM.</p>
+                      <p>You will sleep by 11 PM & wake up by 9 AM.</p>
                     </div>
                     <Link to="/goals" className="goal-link">
                       <FaArrowRight />

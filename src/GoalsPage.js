@@ -32,30 +32,6 @@ const GoalsPage = () => {
 
   return (
     <div className={`goals-page ${menuOpen ? "menu-open" : ""}`}>
-      {/* Fixed header and menu toggle */}
-      <div className="menu-icon" onClick={toggleMenu}>
-        <div className="line"></div>
-        <div className="line"></div>
-      </div>
-
-      {/* Sliding menu */}
-      <div className={`side-menu ${menuOpen ? "open" : ""}`}>
-        <div className="menu-icon" onClick={toggleMenu}>
-          <div className="line"></div>
-          <div className="line"></div>
-        </div>
-
-        <nav>
-          <ul>
-            <li><Link to="/home">HOME</Link></li>
-            <li><Link to="/goals">GOALS</Link></li>
-            <li><Link to="/rewards">REWARDS</Link></li> {/* Add this link */}
-            <li><Link to="/data">DATA</Link></li>
-            <li><Link to="/education">EDUCATION</Link></li>
-            <li><a href="/subscription">SUBSCRIPTION</a></li>
-          </ul>
-        </nav>
-      </div>
 
       {/* Goal Box */}
       <div className="goal-box">
@@ -88,8 +64,8 @@ const GoalsPage = () => {
         <div className="goal-item">
           <p>Goal: Sleep for 8 hours consistently</p>
           <FaTrashAlt className="trash-icon" />
-          <div className="progress-bar">
-            <div className="progress" style={{ width: '50%' }}></div>
+          <div className="progress-bar-goal">
+            <div className="progress-goal" style={{ width: '50%' }}></div>
           </div>
         </div>
 
@@ -97,8 +73,8 @@ const GoalsPage = () => {
         <div className="goal-item">
           <p>Goal: Go to bed by 10 PM</p>
           <FaTrashAlt className="trash-icon" />
-          <div className="progress-bar">
-            <div className="progress" style={{ width: '70%' }}></div>
+          <div className="progress-bar-goal">
+            <div className="progress-goal" style={{ width: '70%' }}></div>
           </div>
         </div>
 
@@ -106,8 +82,8 @@ const GoalsPage = () => {
         <div className="goal-item">
           <p>Goal: Wake up by 6:30 AM</p>
           <FaTrashAlt className="trash-icon" />
-          <div className="progress-bar">
-            <div className="progress" style={{ width: '30%' }}></div>
+          <div className="progress-bar-goal">
+            <div className="progress-goal" style={{ width: '30%' }}></div>
           </div>
         </div>
       </div>

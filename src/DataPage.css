@@ -9,10 +9,11 @@
     border-radius: 15px;
     padding: 20px;
     margin-bottom: 20px;
+    color:white;
   }
   
   .chart-container, .line-chart-container {
-    margin: 20px 0;
+    margin: 20px 0 30px;
     height: 400px;
     position: relative;
   }
@@ -21,7 +22,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin: 20px 0;
+    margin: 50px 0;
   }
   
   .stat-bar {
@@ -32,17 +33,12 @@
   }
   
   .improve-link {
-    margin-top: 20px;
+    margin-top: 50px;
     text-align: right;
   }
   
   .improve-link a {
-    color: blue;
+    color: orange;
     text-decoration: none;
     font-weight: bold;
   }
-  
-  .improve-link a:hover {
-    text-decoration: underline;
-  }
-  

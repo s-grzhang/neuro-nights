@@ -32,6 +32,7 @@ code {
   font-size: 24px;
   font-weight: bold;
   letter-spacing: 1px;
+  color:white;
 }
 
 /* Logo styles */
@@ -183,7 +184,6 @@ main {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  border-radius: 15px;
 }
 
 /* Star icon that appears when progress reaches 100% */
@@ -247,4 +247,17 @@ main {
 
 .goal-link:hover {
   transform: translateX(5px); /* Slight hover effect */
+}
+.account-icon {
+  cursor: pointer; /* Makes it clickable */
+  transition: stroke 0.3s ease; /* Smooth transition */
+}
+
+.account-icon svg {
+  width: 30px;  /* Adjust the width to your preferred size */
+  height: 30px; /* Adjust the height to your preferred size */
+  stroke: #FDD5B1; /* Set initial color */
+}
+.account-icon:hover svg {
+  stroke: 	#F8B878; /* Change color on hover */
 }

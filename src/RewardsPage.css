@@ -27,7 +27,7 @@
   }
   
   .earn-more-button:hover {
-    background-color: #0056b3;
+    background-color: #e06d00;
   }
   
   .books-section {
@@ -119,9 +119,11 @@
     background-color: #FF8C00;
     color: white;
     border: none;
+    border-radius: 5px;
   }
 
   .unlock-button:hover {
-    background-color: #0056b3;
+    background-color: #e06d00;
+    cursor: pointer;
   }
   

@@ -11,7 +11,20 @@ const AccountPage = () => {
   return (
     <div className="account-page">
       {/* Placeholder Icon */}
-      <div className="profile-icon">👤</div>
+      <div className="profile-icon" onClick={() => (window.location.href = "/account")}>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <circle cx="12" cy="7" r="4" />
+    <path d="M5.5 17c1.5-2 4-3 6.5-3s5 1 6.5 3" />
+  </svg>
+</div>
 
       {/* Name */}
       <label htmlFor="name">Name</label>

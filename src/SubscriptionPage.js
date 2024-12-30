@@ -5,7 +5,7 @@ import "./SubscriptionPage.css";
 const SubscriptionPage = () => {
   return (
     <main className="subscription-page">
-      <h2>Choose Your Subscription Plan</h2>
+      <h2 id="choose-plan">Choose Your Subscription Plan</h2>
       
       <div className="subscription-plan">
         <h3>Free Trial</h3>
@@ -60,10 +60,6 @@ const SubscriptionPage = () => {
         </ul>
         <Link to="/account" className="subscribe-btn">Subscribe Now</Link>
       </div>
-
-      <footer className="footer">
-        <p>© NeuroNights</p>
-      </footer>
     </main>
   );
 };

@@ -73,8 +73,10 @@
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-  }
-  
+    margin: 0 auto; /* Center horizontally */
+    display: block; /* Make it a block-level element */
+}
+
   /* Hover effect for the button */
   .set-button:hover {
     background-color: #e06d00; /* Darker orange on hover */
@@ -118,18 +120,19 @@
   }
   
   /* Progress bar styling */
-  .progress-bar {
+  .progress-bar-goal {
     width: 100%;
-    background-color: #e0e0e0;
+    background-color: #fff;
     height: 10px;
     border-radius: 5px;
     overflow: hidden;
+    border: 2px solid #000;
   }
   
   /* Progress within the progress bar */
-  .progress {
+  .progress-goal {
     height: 100%;
-    background-color: #4caf50;
+    background-color: #FFFFC5;
     transition: width 0.3s;
   }
   
@@ -141,7 +144,6 @@
 
 /* New section for setting new goals */
 .set-new-goals {
-    margin-top: 40px;
     padding: 20px;
     width: 100%;
     max-width: 600px;
@@ -156,6 +158,7 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
+    color:white;
   }
   
   .goal-madlib-box input {

@@ -1,3 +1,6 @@
+#choose-plan {
+  margin-top:50px;
+}
 .subscription-page {
     padding: 20px;
   }
@@ -37,15 +40,5 @@
   
   .subscribe-btn:hover {
     background-color: #45a049;
-  }
-  
-  .footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #333;
-    color: white;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
   }
   
