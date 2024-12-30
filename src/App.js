@@ -97,45 +97,16 @@ const App = () => {
                   <div className="goal-card">
                     <div className="goal-text">
                       <h3>Duration</h3>
-                      <p>You will sleep for at least 8 hours.</p>
+                      <p>You will sleep for at least 8 hours tonight.</p>
                     </div>
-                    <Link to="/goals" className="goal-link">
-                      <FaArrowRight />
-                    </Link>
-                  </div>
-                  <div className="goal-card">
-                    <div className="goal-text">
-                      <h3>Consistency</h3>
-                      <p>You will meet your goals every day of the week.</p>
-                    </div>
-                    <Link to="/goals" className="goal-link">
-                      <FaArrowRight />
-                    </Link>
-                  </div>
-                  <div className="goal-card">
-                    <div className="goal-text">
-                      <h3>Bedtime</h3>
-                      <p>You will sleep by 11 PM & wake up by 9 AM.</p>
-                    </div>
-                    <Link to="/goals" className="goal-link">
-                      <FaArrowRight />
-                    </Link>
                   </div>
                 </div>
               </div>
             </main>
           } />
           <Route path="/goals" element={<GoalsPage onEarnPoints={handleEarnPoints} />} />
-          <Route path="/rewards" element={<RewardsPage points={points} />} />
-          <Route path="/education" element={<EducationPage />} /> 
-          <Route path="/data" element={<DataPage />} /> 
-          <Route path="/account" element={<AccountPage />} />
-          <Route path="/subscription" element={<SubscriptionPage />} />
+          <Route path="/rewards" element={<RewardsPage points={points} setPoints={setPoints} />} />
         </Routes>
-
-        <footer className="footer">
-          <p>© NeuroNights</p>
-        </footer>
       </div>
     </Router>
   );
