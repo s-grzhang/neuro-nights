@@ -63,20 +63,15 @@ const App = () => {
               </div>
               <li><Link to="/">HOME</Link></li>
               <li><Link to="/goals">GOALS</Link></li>
-              <li><a href="/rewards">REWARDS</a></li>
-              <li><a href="/data">DATA</a></li>
-              <li><a href="/education">EDUCATION</a></li>
-              <li><a href="/subscription">SUBSCRIPTION</a></li>
+              <li><Link to="/rewards">REWARDS</Link></li>
+              <li><Link to="/data">DATA</Link></li>
+              <li><Link to="/education">EDUCATION</Link></li>
+              <li><Link to="/subscription">SUBSCRIPTION</Link></li>
             </ul>
           </nav>
         </div>
 
         <Routes>
-          <Route path="/rewards" element={<RewardsPage points={points} />} /> 
-          <Route path="/education" element={<EducationPage />} /> 
-          <Route path="/data" element={<DataPage />} /> 
-          <Route path="/account" element={<AccountPage />} />
-          <Route path="/subscription" element={<SubscriptionPage />} />
           <Route path="/" element={
             <main>
               <div className="status-box">
@@ -131,6 +126,11 @@ const App = () => {
             </main>
           } />
           <Route path="/goals" element={<GoalsPage onEarnPoints={handleEarnPoints} />} />
+          <Route path="/rewards" element={<RewardsPage points={points} />} />
+          <Route path="/education" element={<EducationPage />} /> 
+          <Route path="/data" element={<DataPage />} /> 
+          <Route path="/account" element={<AccountPage />} />
+          <Route path="/subscription" element={<SubscriptionPage />} />
         </Routes>
 
         <footer className="footer">
