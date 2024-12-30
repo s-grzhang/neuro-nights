@@ -290,7 +290,7 @@ main {
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 350px) {
   .fixed-header {
     padding: 10px;
   }
@@ -303,10 +303,11 @@ main {
     padding: 15px;
     font-size: 14px; /* Adjust text size for smaller devices */
     height: auto;
+    width: auto; /* Allow the card to scale naturally */
   }
 
   .status-box {
-    width: 100%;
+    width: auto !important; /* Allow the status box to scale naturally */
   }
 
   .goal-cards {

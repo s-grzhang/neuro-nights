@@ -39,14 +39,43 @@ const EducationPage = () => {
       <h1>Sleep Exercises</h1>
       <div className="video-section">
         <div className="large-video">
-        <iframe width="300" height="168.75" src="https://www.youtube.com/embed/4wEDoKm40Yc" 
-    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-  </iframe>
+          <iframe 
+            width="300" 
+            height="168.75" 
+            src="https://www.youtube.com/embed/4wEDoKm40Yc" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen
+          ></iframe>
         </div>
         <div className="small-video-row">
-          <video className="small-video" src="video2.mp4" controls></video>
-          <video className="small-video" src="video3.mp4" controls></video>
-          <video className="small-video" src="video4.mp4" controls></video>
+          <iframe 
+            className="small-video" 
+            width="100" 
+            height="56.25" 
+            src="https://www.youtube.com/embed/vPUQ265HU2Q" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen
+          ></iframe>
+          <iframe 
+            className="small-video" 
+            width="100" 
+            height="56.25" 
+            src="https://www.youtube.com/embed/ft-vhYwHzxw" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen
+          ></iframe>
+          <iframe 
+            className="small-video" 
+            width="100" 
+            height="56.25" 
+            src="https://www.youtube.com/embed/z867dlHCq9c" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen
+          ></iframe>
         </div>
       </div>
 

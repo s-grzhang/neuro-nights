@@ -1,5 +1,3 @@
-/* GoalsPage.css */
-
 /* Container for the goals page */
 .goals-page {
   display: flex;
@@ -149,21 +147,31 @@
   padding: 20px;
   width: 100%;
   max-width: 600px;
+  margin: 0 auto;
 }
 
-/* Mad-lib box with gradient */
-.goal-madlib-box {
+/* New Goal Boxes */
+.goal-box-new {
   background: linear-gradient(to bottom, #FFEB3B, #FF9800);
   border-radius: 10px;
   padding: 20px;
+  margin-bottom: 20px;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
   color: white;
+  text-align: center;
 }
 
-.goal-madlib-box input {
+.goal-box-new h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.goal-box-new p {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.goal-box-new input {
   padding: 5px;
   margin-left: 5px;
   border-radius: 5px;
@@ -171,14 +179,13 @@
   font-size: 14px;
 }
 
-.goal-madlib-box input[type="number"],
-.goal-madlib-box input[type="text"],
-.goal-madlib-box input[type="time"] {
-  width: 150px;
+.goal-box-new input[type="number"],
+.goal-box-new input[type="text"],
+.goal-box-new input[type="time"] {
+  width: 120px;
 }
 
-/* Button styling */
-.set-button {
+.goal-box-new .set-button {
   background-color: #ff7e00;
   color: white;
   padding: 10px 20px;
@@ -186,10 +193,10 @@
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
-  align-self: flex-start;
+  margin-top: 10px;
 }
 
-.set-button:hover {
+.goal-box-new .set-button:hover {
   background-color: #e06d00;
 }
 

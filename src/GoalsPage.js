@@ -1,33 +1,15 @@
-// GoalsPage.js (or wherever your menu is located)
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link } from 'react-router-dom';
 import './GoalsPage.css';
 import recommendedGoalsImage from "./Recommended Goals.png"; 
 import { FaTrashAlt } from 'react-icons/fa';
 
 const GoalsPage = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [goalValues, setGoalValues] = useState({
-    hours: '',
-    start: '',
-    end: '',
-    variance: '',
-    variancePeriod: '',
-    screenTime: ''
-  });
 
   // Function to toggle the menu
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
-  };
-
-  // Handle input change for mad-lib form
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setGoalValues({
-      ...goalValues,
-      [name]: value
-    });
   };
 
   return (
@@ -56,13 +38,13 @@ const GoalsPage = () => {
         </div>
       </div>
 
-      {/* Current Goals Section */}
-      <div className="current-goals">
+        {/* Current Goals Section */}
+        <div className="current-goals">
         <h2>Current Goals</h2>
 
         {/* Goal 1 */}
         <div className="goal-item">
-          <p>Goal: Sleep for 8 hours consistently</p>
+          <p>Goal: I will sleep from 11 PM to 8 AM.</p>
           <FaTrashAlt className="trash-icon" />
           <div className="progress-bar-goal">
             <div className="progress-goal" style={{ width: '50%' }}></div>
@@ -71,7 +53,7 @@ const GoalsPage = () => {
 
         {/* Goal 2 */}
         <div className="goal-item">
-          <p>Goal: Go to bed by 10 PM</p>
+          <p>Goal: I will sleep for 9 hours.</p>
           <FaTrashAlt className="trash-icon" />
           <div className="progress-bar-goal">
             <div className="progress-goal" style={{ width: '70%' }}></div>
@@ -80,7 +62,7 @@ const GoalsPage = () => {
 
         {/* Goal 3 */}
         <div className="goal-item">
-          <p>Goal: Wake up by 6:30 AM</p>
+          <p>Goal: I will avoid a variance of more than 15 minutes every night.</p>
           <FaTrashAlt className="trash-icon" />
           <div className="progress-bar-goal">
             <div className="progress-goal" style={{ width: '30%' }}></div>
@@ -91,52 +73,45 @@ const GoalsPage = () => {
       {/* Set New Goals Section */}
       <div className="set-new-goals">
         <h2>Set New Goals</h2>
-        <div className="goal-madlib-box">
-          <p>I will sleep for 
+
+        {/* Consistency Box */}
+        <div className="goal-box-new">
+          <h3>Consistency</h3>
+          <p>I will avoid a variance of more than 
             <input 
               type="number" 
-              name="hours" 
-              value={goalValues.hours}
-              onChange={handleInputChange} 
-              placeholder="hours" 
-            /> 
-            from 
-            <input 
-              type="time" 
-              name="start" 
-              value={goalValues.start}
-              onChange={handleInputChange}
-            /> 
-            to 
-            <input 
-              type="time" 
-              name="end" 
-              value={goalValues.end}
-              onChange={handleInputChange}
-            />. 
-            I will avoid a bedtime variance of more than 
-            <input 
-              type="number" 
-              name="variance"
-              value={goalValues.variance}
-              onChange={handleInputChange}
-              placeholder="variance" 
+              placeholder="hours"
             /> every 
             <input 
               type="text" 
-              name="variancePeriod"
-              value={goalValues.variancePeriod}
-              onChange={handleInputChange}
-              placeholder="period" 
-            />. 
-            I will avoid screens 
+              placeholder="days"
+            />.
+          </p>
+          <button className="set-button">SET</button>
+        </div>
+
+        {/* Duration Box */}
+        <div className="goal-box-new">
+          <h3>Duration</h3>
+          <p>I will sleep for 
             <input 
               type="number" 
-              name="screenTime"
-              value={goalValues.screenTime}
-              onChange={handleInputChange}
-              placeholder="minutes" 
-            /> before sleeping.
+              placeholder="hours"
+            /> hours.
+          </p>
+          <button className="set-button">SET</button>
+        </div>
+
+        {/* Bedtime Box */}
+        <div className="goal-box-new">
+          <h3>Bedtime</h3>
+          <p>I will sleep from 
+            <input 
+              type="time" 
+            /> to 
+            <input 
+              type="time" 
+            />.
           </p>
           <button className="set-button">SET</button>
         </div>
