@@ -103,18 +103,27 @@ const App = () => {
                       <h3>Duration</h3>
                       <p>You will sleep for 9 hours tonight.</p>
                     </div>
+                    <Link to="/goals" className="goal-link">
+                      <FaArrowRight />
+                    </Link>
                   </div>
                   <div className="goal-card">
                     <div className="goal-text">
                       <h3>Consistency</h3>
                       <p>You will avoid a bedtime variance of more than 15 minutes.</p>
                     </div>
+                    <Link to="/goals" className="goal-link">
+                      <FaArrowRight />
+                    </Link>
                   </div>
                   <div className="goal-card">
                     <div className="goal-text">
                       <h3>Bedtime</h3>
                       <p>You will sleep from 11 PM to 8 AM.</p>
                     </div>
+                    <Link to="/goals" className="goal-link">
+                      <FaArrowRight />
+                    </Link>
                   </div>
                 </div>
               </div>

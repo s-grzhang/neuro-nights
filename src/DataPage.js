@@ -2,29 +2,28 @@ import React from 'react';
 import './DataPage.css'; // Include your styles here
 import { Link } from 'react-router-dom'; // For navigation to Goals page
 import {
-    Chart as ChartJS,
-    BarElement,
-    LineElement,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    Tooltip,
-    Legend,
-  } from 'chart.js';
-  
-  import { Bar, Line } from 'react-chartjs-2';
-  
-  // Register Chart.js components
-  ChartJS.register(
-    BarElement,
-    LineElement,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    Tooltip,
-    Legend
-  );
-  
+  Chart as ChartJS,
+  BarElement,
+  LineElement,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+
+import { Bar, Line } from 'react-chartjs-2';
+
+// Register Chart.js components
+ChartJS.register(
+  BarElement,
+  LineElement,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  Tooltip,
+  Legend
+);
 
 const DataPage = () => {
   // Sample data for the bar chart
@@ -33,33 +32,50 @@ const DataPage = () => {
     datasets: [
       {
         label: 'Sleep Duration (hours)',
-        data: [7, 8, 6.5, 7.5, 8, 9, 6], // Example data
+        data: [9, 0, 0, 0, 0, 0, 0], // Example data
         backgroundColor: 'blue',
       },
     ],
   };
 
-  // Bar chart options
+  // Bar chart options with axis titles and no tooltips
   const barOptions = {
     scales: {
-      y: { beginAtZero: true },
+      y: {
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: 'Hours', // Add y-axis title
+        },
+      },
+      x: {
+        title: {
+          display: true,
+          text: 'Days of the Week', // Add x-axis title
+        },
+      },
+    },
+    plugins: {
+      tooltip: {
+        enabled: false, // Disable tooltips
+      },
     },
   };
 
   // Sample data for the line graph
   const lineData = {
-    labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], // Age in years
+    labels: [11, 12, 13, 14, 15, 16], // Age in years
     datasets: [
       {
-        label: 'Optimal Brain Development',
-        data: [0, 10, 20, 40, 50, 60, 70, 80, 90, 95, 97, 98, 99], // Example curve
+        label: 'Optimal White Matter Volume',
+        data: [500, 540, 580, 620, 660, 700], // Example curve
         borderColor: 'black',
         borderWidth: 2,
         fill: false,
       },
       {
         label: 'Your Development',
-        data: [0, 8, 15, 35, 48, 55, 68, 75, 85, 92, 94, 95, 96], // Example user data
+        data: [487.3, 504.5, 551.2, 589.8, 622.0, 688.5], // Example user data
         borderColor: 'blue',
         borderWidth: 2,
         fill: false,
@@ -67,14 +83,25 @@ const DataPage = () => {
     ],
   };
 
+  // Line chart options with axis titles and no tooltips
   const lineOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
+    scales: {
+      y: {
+        title: {
+          display: true,
+          text: 'Volume (cm³)', // Add y-axis title
+        },
+      },
+      x: {
+        title: {
+          display: true,
+          text: 'Age (Years)', // Add x-axis title
+        },
+      },
+    },
     plugins: {
       tooltip: {
-        callbacks: {
-          label: (tooltipItem) => `Milestone: ${tooltipItem.raw}`,
-        },
+        enabled: false, // Disable tooltips
       },
     },
   };
@@ -85,7 +112,7 @@ const DataPage = () => {
       <div className="today-box">
         <h2>Today</h2>
         <p>
-          You slept for 7 hours and met your REM and deep sleep goals. Keep it
+          You slept for 9 hours and met your duration goal! Keep it
           up to improve your overall brain development!
         </p>
       </div>
