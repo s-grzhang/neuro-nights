@@ -72,6 +72,10 @@ const App = () => {
         </div>
 
         <Routes>
+        <Route path="/education" element={<EducationPage />} /> 
+          <Route path="/data" element={<DataPage />} /> 
+          <Route path="/account" element={<AccountPage />} />
+          <Route path="/subscription" element={<SubscriptionPage />} />
           <Route path="/" element={
             <main>
               <div className="status-box">
@@ -97,7 +101,19 @@ const App = () => {
                   <div className="goal-card">
                     <div className="goal-text">
                       <h3>Duration</h3>
-                      <p>You will sleep for at least 8 hours tonight.</p>
+                      <p>You will sleep for 9 hours tonight.</p>
+                    </div>
+                  </div>
+                  <div className="goal-card">
+                    <div className="goal-text">
+                      <h3>Consistency</h3>
+                      <p>You will avoid a bedtime variance of more than 15 minutes.</p>
+                    </div>
+                  </div>
+                  <div className="goal-card">
+                    <div className="goal-text">
+                      <h3>Bedtime</h3>
+                      <p>You will sleep from 11 PM to 8 AM.</p>
                     </div>
                   </div>
                 </div>
@@ -107,6 +123,9 @@ const App = () => {
           <Route path="/goals" element={<GoalsPage onEarnPoints={handleEarnPoints} />} />
           <Route path="/rewards" element={<RewardsPage points={points} setPoints={setPoints} />} />
         </Routes>
+        <footer className="footer">
+          <p>© NeuroNights</p>
+        </footer>
       </div>
     </Router>
   );
