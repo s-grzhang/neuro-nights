@@ -1,13 +1,12 @@
 import React, { useRef } from 'react';
-import './RewardsPage.css'; // Assume you'll style it here
-import { FaStar, FaArrowRight, FaArrowLeft } from 'react-icons/fa'; // Icons for the star and arrows
+import './RewardsPage.css';
+import { FaStar, FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 
-const RewardsPage = () => {
+const RewardsPage = ({ points }) => { // Points passed as a prop
   const sciFiRef = useRef(null);
   const biographyRef = useRef(null);
   const romanceRef = useRef(null);
 
-  // Sample data for books, with points required
   const sciFiBooks = [
     { title: 'Chapter 1', points: 200 },
     { title: 'Chapter 1', points: 150 },
@@ -33,10 +32,8 @@ const RewardsPage = () => {
     { title: 'Chapter 1', points: 300 }
   ];
 
-  // Scroll handling for book rows
   const scrollBooks = (direction, genre) => {
-    let scrollAmount = 200; // Adjust the scroll amount
-
+    let scrollAmount = 200;
     if (genre === 'sciFi') {
       sciFiRef.current.scrollLeft += direction === 'left' ? -scrollAmount : scrollAmount;
     } else if (genre === 'biography') {
@@ -52,8 +49,7 @@ const RewardsPage = () => {
 
       {/* Points display */}
       <div className="points-display">
-        <p>You have <strong>100</strong> points <FaStar className="star-icon" />
-        </p>
+        <p>You have <strong>{points}</strong> points <FaStar className="star-icon" /></p>
       </div>
 
       {/* Earn more button */}
@@ -64,11 +60,11 @@ const RewardsPage = () => {
         {/* Sci-Fi genre */}
         <div className="genre-section">
           <h2>Sci-Fi</h2>
-            <FaArrowLeft
-              className="arrow left-arrow"
-              onClick={() => scrollBooks('left', 'sciFi')}
-            />
-            <div className="book-row" ref={sciFiRef}>
+          <FaArrowLeft
+            className="arrow left-arrow"
+            onClick={() => scrollBooks('left', 'sciFi')}
+          />
+          <div className="book-row" ref={sciFiRef}>
             {sciFiBooks.map((book, index) => (
               <div key={index} className="book-item">
                 <div className="book-image"></div>
@@ -81,21 +77,21 @@ const RewardsPage = () => {
                 </div>
               </div>
             ))}
-            </div>
-            <FaArrowRight
-              className="arrow right-arrow"
-              onClick={() => scrollBooks('right', 'sciFi')}
-            />
+          </div>
+          <FaArrowRight
+            className="arrow right-arrow"
+            onClick={() => scrollBooks('right', 'sciFi')}
+          />
         </div>
 
         {/* Biography genre */}
         <div className="genre-section">
           <h2>Biography</h2>
-            <FaArrowLeft
-              className="arrow left-arrow"
-              onClick={() => scrollBooks('left', 'biography')}
-            />
-            <div className="book-row" ref={biographyRef}>
+          <FaArrowLeft
+            className="arrow left-arrow"
+            onClick={() => scrollBooks('left', 'biography')}
+          />
+          <div className="book-row" ref={biographyRef}>
             {biographyBooks.map((book, index) => (
               <div key={index} className="book-item">
                 <div className="book-image"></div>
@@ -108,21 +104,21 @@ const RewardsPage = () => {
                 </div>
               </div>
             ))}
-            </div>
-            <FaArrowRight
-              className="arrow right-arrow"
-              onClick={() => scrollBooks('right', 'biography')}
-            />
+          </div>
+          <FaArrowRight
+            className="arrow right-arrow"
+            onClick={() => scrollBooks('right', 'biography')}
+          />
         </div>
 
         {/* Romance genre */}
         <div className="genre-section">
           <h2>Romance</h2>
-            <FaArrowLeft
-              className="arrow left-arrow"
-              onClick={() => scrollBooks('left', 'romance')}
-            />
-            <div className="book-row" ref={romanceRef}>
+          <FaArrowLeft
+            className="arrow left-arrow"
+            onClick={() => scrollBooks('left', 'romance')}
+          />
+          <div className="book-row" ref={romanceRef}>
             {romanceBooks.map((book, index) => (
               <div key={index} className="book-item">
                 <div className="book-image"></div>
@@ -134,14 +130,15 @@ const RewardsPage = () => {
                   </div>
                 </div>
               </div>
-            ))}</div>
-            <FaArrowRight
-              className="arrow right-arrow"
-              onClick={() => scrollBooks('right', 'romance')}
-            />
+            ))}
           </div>
+          <FaArrowRight
+            className="arrow right-arrow"
+            onClick={() => scrollBooks('right', 'romance')}
+          />
         </div>
       </div>
+    </div>
   );
 };
 

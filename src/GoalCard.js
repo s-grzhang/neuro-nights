@@ -1,4 +1,3 @@
-// GoalCard.js
 import React, { useState } from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
 import './GoalsPage.css';  // Ensure this line is present at the top of your GoalsPage.js
@@ -8,10 +7,9 @@ const GoalCard = ({ goal, onDelete, onEarnPoints }) => {
 
   const handleEarnPoints = () => {
     setAnimationActive(true);
-    // Delay to allow the animation to play before calling onEarnPoints
     setTimeout(() => {
-      onEarnPoints(goal.id);  // Call parent function to delete goal
-      setAnimationActive(false);  // Reset animation state
+      onEarnPoints(goal.points);  // Pass the points to the parent
+      setAnimationActive(false);
     }, 1000); // Adjust duration of the animation here
   };
 
