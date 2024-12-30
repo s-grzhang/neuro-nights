@@ -13,25 +13,25 @@ const EducationPage = () => {
           <FaBrain className="card-icon" />
           <h2 className="card-title">Brain Teasers</h2>
           <p className="card-description">Understand the relationship between mental health disorders & sleep.</p>
-          <button className="card-button">400 pts.</button>
+          <button className="card-button">100 pts.</button>
         </div>
         <div className="card">
           <FaPuzzlePiece className="card-icon" />
           <h2 className="card-title">Memory Games</h2>
           <p className="card-description">Learn the short- and long-term effects of insufficient sleep on memory with some fun brain teasers.</p>
-          <button className="card-button">350 pts.</button>
+          <button className="card-button">150 pts.</button>
         </div>
         <div className="card">
           <FaGamepad className="card-icon" />
           <h2 className="card-title">Fun Challenges</h2>
           <p className="card-description">Explore the changes in brain structure and function during the teenage years.</p>
-          <button className="card-button">450 pts.</button>
+          <button className="card-button">150 pts.</button>
         </div>
         <div className="card">
           <FaQuestionCircle className="card-icon" />
           <h2 className="card-title">Trivia Quiz</h2>
           <p className="card-description">Test your knowledge on the role of sleep in the growth & maintenance of new neurons.</p>
-          <button className="card-button">300 pts.</button>
+          <button className="card-button">100 pts.</button>
         </div>
       </div>
 

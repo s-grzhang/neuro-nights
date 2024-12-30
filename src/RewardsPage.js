@@ -9,28 +9,28 @@ const RewardsPage = () => {
 
   // Sample data for books, with points required
   const sciFiBooks = [
-    { title: 'Book 1', points: 200 },
-    { title: 'Book 2', points: 150 },
-    { title: 'Book 3', points: 250 },
-    { title: 'Book 4', points: 300 },
-    { title: 'Book 5', points: 300 },
-    { title: 'Book 6', points: 300 }
+    { title: 'Chapter 1', points: 200 },
+    { title: 'Chapter 1', points: 150 },
+    { title: 'Chapter 1', points: 250 },
+    { title: 'Chapter 1', points: 300 },
+    { title: 'Chapter 1', points: 300 },
+    { title: 'Chapter 1', points: 300 }
   ];
   const biographyBooks = [
-    { title: 'Book 1', points: 100 },
-    { title: 'Book 2', points: 175 },
-    { title: 'Book 3', points: 200 },
-    { title: 'Book 4', points: 300 },
-    { title: 'Book 5', points: 300 },
-    { title: 'Book 6', points: 300 }
+    { title: 'Chapter 1', points: 100 },
+    { title: 'Chapter 1', points: 175 },
+    { title: 'Chapter 1', points: 200 },
+    { title: 'Chapter 1', points: 300 },
+    { title: 'Chapter 1', points: 300 },
+    { title: 'Chapter 1', points: 300 }
   ];
   const romanceBooks = [
-    { title: 'Book 1', points: 150 },
-    { title: 'Book 2', points: 250 },
-    { title: 'Book 3', points: 100 },
-    { title: 'Book 4', points: 200 },
-    { title: 'Book 5', points: 300 },
-    { title: 'Book 6', points: 300 }
+    { title: 'Chapter 1', points: 150 },
+    { title: 'Chapter 1', points: 250 },
+    { title: 'Chapter 1', points: 100 },
+    { title: 'Chapter 1', points: 200 },
+    { title: 'Chapter 1', points: 300 },
+    { title: 'Chapter 1', points: 300 }
   ];
 
   // Scroll handling for book rows
