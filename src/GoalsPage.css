@@ -298,4 +298,36 @@
   .current-goals h2 {
     font-size: 18px;
   }
+  /* Add these styles to your existing CSS file */
+
+/* Animation for goal item disappearing */
+.goal-item.animate {
+  animation: disappear 1s forwards;
+}
+
+@keyframes disappear {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+/* Style for the "400 PTS" button */
+body .goal-item .rewards-button {
+  background-color: #4CAF50 !important;
+  color: white;
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.goal-item .rewards-button:hover {
+  background-color: #45a049;
+}
+
 }

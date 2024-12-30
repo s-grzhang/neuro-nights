@@ -3,15 +3,15 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './GoalsPage.css';
 import recommendedGoalsImage from "./Recommended Goals.png"; 
-import { FaTrashAlt } from 'react-icons/fa';
-import GoalCard from './GoalCard';  // Import the new GoalCard component
+import GoalCard from './GoalCard';  // Import the GoalCard component
 
 const GoalsPage = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [goals, setGoals] = useState([  // Initialize with some default goals
     { id: 1, text: 'I will sleep from 11 PM to 8 AM.', progress: 50 },
     { id: 2, text: 'I will sleep for 9 hours.', progress: 70 },
-    { id: 3, text: 'I will avoid a variance of more than 15 minutes every night.', progress: 30 }
+    { id: 3, text: 'I will avoid a variance of more than 15 minutes every night.', progress: 30 },
+    { id: 4, text: 'I will sleep for 8 hours every night.', progress: 100 }  // Hardcoded fulfilled goal
   ]);
   
   const [newGoal, setNewGoal] = useState({
@@ -59,6 +59,11 @@ const GoalsPage = () => {
     setGoals(goals.filter(goal => goal.id !== id));
   };
 
+  // Function to handle the "400 PTS" click
+  const handleEarnPoints = (id) => {
+    setGoals(goals.filter(goal => goal.id !== id));  // Remove goal after earning points
+  };
+
   return (
     <div className={`goals-page ${menuOpen ? "menu-open" : ""}`}>
 
@@ -92,6 +97,7 @@ const GoalsPage = () => {
             key={goal.id} 
             goal={goal} 
             onDelete={handleDeleteGoal} 
+            onEarnPoints={handleEarnPoints}  // Pass the handleEarnPoints function
           />
         ))}
       </div>
