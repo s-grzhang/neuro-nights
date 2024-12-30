@@ -9,6 +9,7 @@ const GoalCard = ({ goal, onDelete, onEarnPoints }) => {
     setAnimationActive(true);
     setTimeout(() => {
       onEarnPoints(goal.points || 0); // Ensure points are passed correctly
+      onDelete(goal.id); // Delete the goal after earning points
       setAnimationActive(false);
     }, 1000);
   };
