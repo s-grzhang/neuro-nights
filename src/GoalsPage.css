@@ -2,192 +2,293 @@
 
 /* Container for the goals page */
 .goals-page {
-    display: flex;
-    justify-content: center;
-    flex-direction: column; /* Arrange content vertically */
-    padding: 20px;
-    padding-top: 80px; /* Push content down to avoid header overlap */
-  }
-  
-  /* Box containing the gradient background and cards */
-  .goal-box {
-    background: linear-gradient(to bottom, #7c4dff, #4a90e2); /* Purple to Blue gradient */
-    width: 100%;
-    max-width: 600px;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    position: relative; /* Allow the content to stay in place */
-    margin-bottom: 30px; /* Add space between goal-box and current-goals */
-  }
-  
-  /* The image at the top part of the goal box */
-  .goal-image {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 15px; /* Space below the image */
-    margin-bottom: -40px;
-    margin-top: -40px;
-  }
-  
-  /* Cards container with a column direction */
-  .goal-cards {
-    display: flex;
-    flex-direction: row; /* Arrange cards horizontally */
-    gap: 15px;
-    margin-top: 20px;
-  }
-  
-  /* Individual goal cards */
-  .goal-card {
-    background-color: white;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 180px;
-    box-sizing: border-box;
-  }
-  
-  /* Goal card heading */
-  .goal-card h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  
-  /* Goal card text */
-  .goal-card p {
-    font-size: 14px;
-    color: white; /* Changed to black for better readability */
-    margin-bottom: 20px;
-  }
-  
-  /* SET button style */
-  .set-button {
-    background-color: #ff7e00; /* Orange button */
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    margin: 0 auto; /* Center horizontally */
-    display: block; /* Make it a block-level element */
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+  padding-top: 80px; /* Push content down to avoid header overlap */
 }
 
-  /* Hover effect for the button */
-  .set-button:hover {
-    background-color: #e06d00; /* Darker orange on hover */
-  }
-  
-  /* Current Goals section styling */
-  .current-goals {
-    padding: 20px;
-    width: 100%;
-    max-width: 600px; /* Align with the goal-box width */
-  }
-  
-  /* Current Goals section title */
-  .current-goals h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  /* Individual goal items in Current Goals */
-  .goal-item {
-    display: flex;
-    flex-direction: column; /* Stack elements vertically */
-    align-items: flex-start;
-    margin-bottom: 15px;
-  }
-  
-  /* Goal paragraph text */
-  .goal-item p {
-    flex: 1;
-    font-size: 18px;
-    margin-right: 10px;
-  }
-  
-  /* Trash icon styling */
-  .trash-icon {
-    cursor: pointer;
-    font-size: 20px;
-    color: #ff6347; /* Tomato color */
-    margin-right: 15px;
-  }
-  
-  /* Progress bar styling */
-  .progress-bar-goal {
-    width: 100%;
-    background-color: #fff;
-    height: 10px;
-    border-radius: 5px;
-    overflow: hidden;
-    border: 2px solid #000;
-  }
-  
-  /* Progress within the progress bar */
-  .progress-goal {
-    height: 100%;
-    background-color: #FFFFC5;
-    transition: width 0.3s;
-  }
-  
-  /* Prevent margin-bottom on the last goal item */
-  .goal-item:last-child {
-    margin-bottom: 0;
-  }
-  /* GoalsPage.css */
+/* Box containing the gradient background and cards */
+.goal-box {
+  background: linear-gradient(to bottom, #7c4dff, #4a90e2);
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+/* The image at the top part of the goal box */
+.goal-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: -40px;
+  margin-top: -40px;
+}
+
+/* Cards container with a column direction */
+.goal-cards {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  gap: 15px;
+  margin-top: 20px;
+  justify-content: center; /* Center-align cards */
+}
+
+/* Individual goal cards */
+.goal-card {
+  background-color: white;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%; /* Full width by default */
+  max-width: 180px; /* Limit size for larger screens */
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Goal card heading */
+.goal-card h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* Goal card text */
+.goal-card p {
+  font-size: 14px;
+  color: white;
+  margin-bottom: 20px;
+}
+
+/* SET button style */
+.set-button {
+  background-color: #ff7e00;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 0 auto;
+  display: block;
+}
+
+.set-button:hover {
+  background-color: #e06d00;
+}
+
+/* Current Goals section styling */
+.current-goals {
+  padding: 20px;
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Current Goals section title */
+.current-goals h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Individual goal items in Current Goals */
+.goal-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+/* Goal paragraph text */
+.goal-item p {
+  flex: 1;
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+/* Trash icon styling */
+.trash-icon {
+  cursor: pointer;
+  font-size: 20px;
+  color: #ff6347;
+  margin-right: 15px;
+}
+
+/* Progress bar styling */
+.progress-bar-goal {
+  width: 100%;
+  background-color: #fff;
+  height: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 2px solid #000;
+}
+
+/* Progress within the progress bar */
+.progress-goal {
+  height: 100%;
+  background-color: #FFFFC5;
+  transition: width 0.3s;
+}
+
+/* Prevent margin-bottom on the last goal item */
+.goal-item:last-child {
+  margin-bottom: 0;
+}
 
 /* New section for setting new goals */
 .set-new-goals {
-    padding: 20px;
-    width: 100%;
-    max-width: 600px;
+  padding: 20px;
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Mad-lib box with gradient */
+.goal-madlib-box {
+  background: linear-gradient(to bottom, #FFEB3B, #FF9800);
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  color: white;
+}
+
+.goal-madlib-box input {
+  padding: 5px;
+  margin-left: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.goal-madlib-box input[type="number"],
+.goal-madlib-box input[type="text"],
+.goal-madlib-box input[type="time"] {
+  width: 150px;
+}
+
+/* Button styling */
+.set-button {
+  background-color: #ff7e00;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  align-self: flex-start;
+}
+
+.set-button:hover {
+  background-color: #e06d00;
+}
+
+/* Media Queries for Responsiveness */
+
+/* For tablets (768px and below) */
+@media (max-width: 768px) {
+  .goal-box {
+    max-width: 90%; /* Shrink the container on tablets */
   }
-  
-  /* Mad-lib box with gradient */
+
+  .goal-cards {
+    gap: 20px;
+  }
+
+  .goal-card {
+    max-width: none;
+    width: 100%; /* Allow cards to stretch across the screen */
+  }
+
+  .current-goals h2 {
+    font-size: 20px;
+  }
+
+  .goal-item p {
+    font-size: 16px;
+  }
+
   .goal-madlib-box {
-    background: linear-gradient(to bottom, #FFEB3B, #FF9800); /* Yellow to orange gradient */
-    border-radius: 10px;
-    padding: 20px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    color:white;
+    padding: 15px; /* Adjust padding for smaller screens */
   }
-  
-  .goal-madlib-box input {
-    padding: 5px;
-    margin-left: 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+}
+
+/* For iPhone XS and below (375px and below) */
+@media (max-width: 375px) {
+  .goal-box {
+    max-width: 100%; /* Full width for small screens */
+    padding: 15px;
+  }
+
+  .goal-cards {
+    gap: 10px;
+  }
+
+  .goal-card {
+    max-width: 100%; /* Stretch cards across the screen */
+    padding: 10px;
+  }
+
+  .goal-card h3 {
+    font-size: 16px; /* Adjust card heading size */
+  }
+
+  .goal-card p {
+    font-size: 12px; /* Adjust card text size */
+  }
+
+  .goal-item p {
     font-size: 14px;
   }
-  
-  .goal-madlib-box input[type="number"],
-  .goal-madlib-box input[type="text"],
-  .goal-madlib-box input[type="time"] {
-    width: 150px;
+
+  .current-goals h2 {
+    font-size: 18px; /* Reduce heading size for small screens */
   }
-  
-  /* Button styling */
+
   .set-button {
-    background-color: #ff7e00; /* Orange button */
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    align-self: flex-start;
+    font-size: 14px; /* Adjust button size */
+    padding: 8px 16px;
   }
-  
-  .set-button:hover {
-    background-color: #e06d00; /* Darker orange on hover */
+
+  .goal-madlib-box {
+    padding: 12px; /* Adjust padding for small screens */
   }
-  
+}
+
+/* For small mobile devices (480px and below) */
+@media (max-width: 480px) {
+  .goal-box {
+    max-width: 100%; /* Full width for small screens */
+  }
+
+  .set-button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .goal-card h3 {
+    font-size: 16px;
+  }
+
+  .goal-card p {
+    font-size: 12px;
+  }
+
+  .goal-item p {
+    font-size: 14px;
+  }
+
+  .current-goals h2 {
+    font-size: 18px;
+  }
+}

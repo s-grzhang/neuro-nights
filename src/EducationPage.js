@@ -39,7 +39,7 @@ const EducationPage = () => {
       <h1>Sleep Exercises</h1>
       <div className="video-section">
         <div className="large-video">
-        <iframe width="1120" height="630" src="https://www.youtube.com/embed/4wEDoKm40Yc" 
+        <iframe width="300" height="168.75" src="https://www.youtube.com/embed/4wEDoKm40Yc" 
     frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
   </iframe>
         </div>

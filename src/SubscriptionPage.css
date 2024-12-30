@@ -1,44 +1,101 @@
 #choose-plan {
-  margin-top:50px;
+  margin-top: 40px; /* Reduced margin for smaller screens */
 }
+
 .subscription-page {
-    padding: 20px;
+  padding: 15px; /* Adjusted padding for better fit */
+}
+
+.subscription-plan {
+  margin-bottom: 20px; /* Reduced bottom margin */
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px; /* Reduced padding */
+  background-color: #f9f9f9;
+  transition: padding 0.3s ease, margin-bottom 0.3s ease; /* Smooth transition */
+}
+
+.subscription-plan h3 {
+  font-size: 20px; /* Adjusted font size for mobile screens */
+  margin-bottom: 8px; /* Reduced margin */
+  text-align: center;
+}
+
+.subscription-plan ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.subscription-plan li {
+  font-size: 14px; /* Reduced font size */
+  margin-bottom: 6px; /* Reduced margin */
+}
+
+.subscribe-btn {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 8px 16px; /* Adjusted padding for mobile */
+  background-color: #4caf50;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  width: 100%; /* Full width button */
+}
+
+.subscribe-btn:hover {
+  background-color: #45a049;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .subscription-page {
+    padding: 10px;
   }
-  
+
   .subscription-plan {
-    margin-bottom: 30px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 20px;
-    background-color: #f9f9f9;
+    padding: 12px; /* Reduced padding */
+    margin-bottom: 18px; /* Slightly reduced margin */
   }
-  
+
   .subscription-plan h3 {
-    font-size: 24px;
-    margin-bottom: 10px;
+    font-size: 18px; /* Adjust font size */
   }
-  
-  .subscription-plan ul {
-    list-style-type: none;
-    padding-left: 0;
-  }
-  
+
   .subscription-plan li {
-    font-size: 16px;
-    margin-bottom: 8px;
+    font-size: 13px; /* Smaller font size */
   }
-  
+
   .subscribe-btn {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #4caf50;
-    color: white;
-    border-radius: 5px;
-    text-decoration: none;
+    padding: 8px 14px; /* Adjusted padding */
   }
-  
-  .subscribe-btn:hover {
-    background-color: #45a049;
+}
+
+@media (max-width: 480px) {
+  #choose-plan {
+    margin-top: 20px; /* Further reduced margin */
   }
-  
+
+  .subscription-page {
+    padding: 5px; /* Further reduced padding */
+  }
+
+  .subscription-plan {
+    padding: 8px; /* Further reduced padding */
+    margin-bottom: 12px; /* Further reduced margin */
+  }
+
+  .subscription-plan h3 {
+    font-size: 16px; /* Smaller font size */
+  }
+
+  .subscription-plan li {
+    font-size: 12px; /* Smaller font size */
+  }
+
+  .subscribe-btn {
+    padding: 6px 12px;
+    font-size: 14px; /* Adjusted font size */
+    width: auto; /* Revert to original width */
+  }
+}

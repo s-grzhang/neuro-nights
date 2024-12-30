@@ -4,111 +4,225 @@
 .education-page {
     padding: 20px;
     font-family: Arial, sans-serif;
-  }
-  
-  h1 {
-    margin-top:100px;
-    font-size: 2rem;
+}
+
+.education-page h1 {
+    margin-top: 70px; /* Reduced margin for better fit on small screens */
+    font-size: 1.8rem; /* Adjusted for smaller screens */
     margin-bottom: 20px;
     color: #333;
     text-align: center;
-  }
-  
-  /* Card Grid */
-  .card-grid {
+}
+
+/* Card Grid */
+.card-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-  }
-  
-  .card {
+}
+
+.card {
     background: linear-gradient(135deg, #ffa726, #ffcc80, #ffa726);
     border-radius: 15px;
-    padding: 20px;
+    padding: 15px; /* Adjusted padding for smaller screens */
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .card:hover {
+}
+
+.card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  .card-icon {
-    font-size: 3rem;
+}
+
+.card-icon {
+    font-size: 2.5rem; /* Reduced size for smaller screens */
     color: #ff8c00;
-    margin-bottom: 10px;
-  }
-  
-  .card-title {
-    font-size: 1.5rem;
+}
+
+.card-title {
+    font-size: 1.2rem; /* Slightly smaller font */
     color: #fff;
     margin-bottom: 10px;
-  }
-  
-  .card-description {
-    font-size: 1rem;
+}
+
+.card-description {
+    font-size: 0.9rem; /* Reduced font size */
     color: #fff;
     margin-bottom: 15px;
-  }
-  
-  .card-button {
+}
+
+.card-button {
     background-color: #ffd54f;
     color: #333;
     border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
+    padding: 8px 16px; /* Reduced padding */
+    font-size: 0.9rem; /* Adjusted for smaller screens */
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  
-  .card-button:hover {
+}
+
+.card-button:hover {
     background-color: #ffca28;
-  }
-  
-  /* Video Section */
-  .video-section {
+}
+
+/* Video Section */
+.video-section {
     text-align: center;
-  }
-  
-  .large-video {
+}
+
+.large-video {
     margin-bottom: 20px;
-  }
-  
-  .large-video video {
-    width: 80%;
+}
+
+.large-video video {
+    width: 90%; /* Adjusted video size for mobile */
     border-radius: 15px;
-  }
-  
-  .small-video-row {
+}
+
+.small-video-row {
     display: flex;
     justify-content: center;
     gap: 15px;
-  }
-  
-  .small-video {
-    width: 25%;
+    flex-wrap: wrap; /* Allows videos to wrap on smaller screens */
+}
+
+.small-video {
+    width: 100px !important; /* Adjust small video width for better fit */
     border-radius: 10px;
-  }
-  
-  /* Social Media Icons */
-  .social-media-icons {
+}
+
+/* Social Media Icons */
+.social-media-icons {
     margin-top: 30px;
     display: flex;
     justify-content: center;
     gap: 20px;
-  }
-  
-  .social-media-icons i {
+}
+
+.social-media-icons i {
     font-size: 2rem;
     color: linear-gradient(135deg, #ffa726, #ffcc80, #ffa726);
     cursor: pointer;
     transition: color 0.3s ease;
-  }
-  
-  .social-media-icons i:hover {
+}
+
+.social-media-icons i:hover {
     color: #333;
-  }
-  
+}
+
+/* Media Queries for Responsiveness */
+
+/* For tablets (768px and below) */
+@media (max-width: 768px) {
+    .card-grid {
+        grid-template-columns: 1fr; /* Single column for smaller screens */
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    .card-icon {
+        font-size: 2.5rem;
+    }
+
+    .card-title {
+        font-size: 1.25rem;
+    }
+
+    .card-description {
+        font-size: 0.9rem;
+    }
+
+    .card-button {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+
+    .large-video video {
+        width: 90%; /* Make the video slightly larger for medium screens */
+    }
+
+    .small-video {
+        width: 40%; /* Adjust small video width */
+    }
+}
+
+/* For small mobile devices (480px and below) */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem; /* Adjust heading size */
+    }
+
+    .card {
+        padding: 10px;
+    }
+
+    .card-icon {
+        font-size: 2rem;
+    }
+
+    .card-title {
+        font-size: 1rem;
+    }
+
+    .card-description {
+        font-size: 0.8rem;
+    }
+
+    .card-button {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+
+    .large-video video {
+        width: 100%; /* Full width on small screens */
+    }
+
+    .small-video {
+        width: 100%; /* Stack small videos vertically */
+    }
+}
+
+/* For iPhone XS (375px width) */
+@media (max-width: 375px) {
+    h1 {
+        font-size: 1.4rem; /* Adjust for very small screens */
+        margin-top: 30px; /* Adjust heading margin */
+    }
+
+    .card-grid {
+        grid-template-columns: 1fr; /* Single column layout */
+    }
+
+    .card {
+        padding: 10px;
+    }
+
+    .card-icon {
+        font-size: 2rem;
+    }
+
+    .card-title {
+        font-size: 1rem;
+    }
+
+    .card-description {
+        font-size: 0.8rem;
+    }
+
+    .card-button {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+
+    .large-video video {
+        width: 100%; /* Full width on small screens */
+    }
+
+    .small-video {
+        width: 100%; /* Stack small videos vertically */
+    }
+}

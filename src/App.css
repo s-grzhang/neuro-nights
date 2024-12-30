@@ -22,10 +22,12 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding: 20px; /* Add padding for smaller screens */
 }
 
 .App-link {
   color: #61dafb;
+  font-size: 1.2rem; /* Adjust font size for readability */
 }
 
 @keyframes App-logo-spin {
@@ -34,5 +36,53 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* Responsive adjustments for tablets and smaller screens */
+@media (max-width: 768px) {
+  .App-logo {
+    height: 30vmin; /* Reduce logo size on smaller screens */
+  }
+
+  .App-header {
+    font-size: calc(10px + 3vmin); /* Slightly larger text for readability */
+    padding: 10px;
+  }
+
+  .App-link {
+    font-size: 1rem; /* Adjust link font size for smaller screens */
+  }
+}
+
+/* Responsive adjustments for mobile phones */
+@media (max-width: 480px) {
+  .App-logo {
+    height: 25vmin; /* Further reduce logo size for very small screens */
+  }
+
+  .App-header {
+    font-size: calc(8px + 4vmin); /* Increase font size slightly for readability */
+    padding: 5px; /* Reduce padding for smaller screens */
+  }
+
+  .App-link {
+    font-size: 0.9rem; /* Smaller links on narrow screens */
+  }
+}
+
+/* Specific adjustments for iPhone XS screen size */
+@media (max-width: 375px) {
+  .App-logo {
+    height: 30vmin; /* Moderate logo size for iPhone XS */
+  }
+
+  .App-header {
+    font-size: calc(10px + 2.5vmin); /* Slightly smaller text on iPhone XS */
+    padding: 15px; /* Balance padding for the screen size */
+  }
+
+  .App-link {
+    font-size: 1rem; /* Adjust font size for link on iPhone XS */
   }
 }

@@ -1,120 +1,220 @@
 .account-page {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    text-align: left;
-  }
-  
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  text-align: left;
+  box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+
+.profile-icon {
+  margin-top: 100px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #FFFFC5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+
+.profile-icon svg {
+  stroke: #FFD580;
+}
+
+label {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+  display: block;
+}
+
+.input-field,
+.dropdown {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+
+h2 {
+  font-size: 18px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.privacy-setting {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: purple;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: blue;
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+.orange-button {
+  background-color: orange;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.orange-button:hover {
+  background-color: darkorange;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
   .profile-icon {
-    margin-top: 100px;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background-color: #FFFFC5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 50px;
-    margin-bottom: 20px;
+    margin-top: 80px;
+    width: 80px;
+    height: 80px;
+    font-size: 40px;
   }
 
-  .profile-icon svg {
-    stroke: #FFD580;
-  }
-  
-  label {
-    font-size: 16px;
-    font-weight: bold;
-    margin-top: 10px;
-    display: block;
-  }
-  
-  .input-field {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .dropdown {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
   h2 {
-    font-size: 18px;
-    margin-top: 20px;
-    margin-bottom: 10px;
-  }
-  
-  .privacy-setting {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 40px;
-    height: 20px;
-  }
-  
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  .slider {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: purple;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: 0.4s;
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 14px;
-    width: 14px;
-    left: 3px;
-    bottom: 3px;
-    background-color: white;
-    border-radius: 50%;
-    transition: 0.4s;
-  }
-  
-  input:checked + .slider {
-    background-color: blue;
-  }
-  
-  input:checked + .slider:before {
-    transform: translateX(20px);
-  }
-  
-  .orange-button {
-    background-color: orange;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
     font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 10px;
   }
-  
-  .orange-button:hover {
-    background-color: darkorange;
+
+  .input-field,
+  .dropdown {
+    padding: 8px;
   }
-  
+
+  .orange-button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-icon {
+    margin-top: 60px;
+    width: 70px;
+    height: 70px;
+    font-size: 35px;
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+  .privacy-setting {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .orange-button {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .account-page {
+    padding: 10px;
+  }
+
+  .profile-icon {
+    margin-top: 40px;
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+  }
+
+  label {
+    font-size: 12px;
+  }
+
+  h2 {
+    font-size: 14px;
+  }
+
+  .orange-button {
+    font-size: 10px;
+    padding: 5px 10px;
+  }
+}
+
+/* Specific adjustments for iPhone XS size (375 x 812px) */
+@media (max-width: 375px) {
+  .account-page {
+    padding: 15px; /* Adjust padding for smaller screen */
+  }
+
+  .profile-icon {
+    margin-top: 60px; /* Adjust margin-top for better positioning */
+    width: 70px;
+    height: 70px;
+    font-size: 35px;
+  }
+
+  label {
+    font-size: 14px; /* Smaller label font */
+  }
+
+  h2 {
+    font-size: 16px; /* Adjust heading size */
+  }
+
+  .input-field,
+  .dropdown {
+    padding: 8px; /* Adjust padding for smaller fields */
+  }
+
+  .orange-button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
