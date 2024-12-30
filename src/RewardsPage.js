@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import './RewardsPage.css';
 import { FaStar, FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 
@@ -6,6 +6,11 @@ const RewardsPage = ({ points }) => { // Points passed as a prop
   const sciFiRef = useRef(null);
   const biographyRef = useRef(null);
   const romanceRef = useRef(null);
+
+  // Debug useEffect to verify points update
+  useEffect(() => {
+    console.log(`Points updated to: ${points}`);
+  }, [points]);
 
   const sciFiBooks = [
     { title: 'Chapter 1', points: 200 },

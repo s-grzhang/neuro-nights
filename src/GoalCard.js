@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
-import './GoalsPage.css';  // Ensure this line is present at the top of your GoalsPage.js
+import './GoalsPage.css';
 
 const GoalCard = ({ goal, onDelete, onEarnPoints }) => {
   const [animationActive, setAnimationActive] = useState(false);
@@ -8,9 +8,9 @@ const GoalCard = ({ goal, onDelete, onEarnPoints }) => {
   const handleEarnPoints = () => {
     setAnimationActive(true);
     setTimeout(() => {
-      onEarnPoints(goal.points);  // Pass the points to the parent
+      onEarnPoints(goal.points || 0); // Ensure points are passed correctly
       setAnimationActive(false);
-    }, 1000); // Adjust duration of the animation here
+    }, 1000);
   };
 
   return (
