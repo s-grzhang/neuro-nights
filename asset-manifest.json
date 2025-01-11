@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/neuro-nights/static/css/main.e90fdb53.css",
+    "main.js": "/neuro-nights/static/js/main.cd833dc6.js",
+    "static/js/488.5bc710ee.chunk.js": "/neuro-nights/static/js/488.5bc710ee.chunk.js",
+    "static/media/fa-solid-900.ttf": "/neuro-nights/static/media/fa-solid-900.2582b0e4bcf85eceead0.ttf",
+    "static/media/fa-brands-400.ttf": "/neuro-nights/static/media/fa-brands-400.1815e00441357e01619e.ttf",
+    "static/media/fa-solid-900.woff2": "/neuro-nights/static/media/fa-solid-900.2463b90d9a316e4e5294.woff2",
+    "static/media/fa-brands-400.woff2": "/neuro-nights/static/media/fa-brands-400.c210719e60948b211a12.woff2",
+    "static/media/fa-regular-400.ttf": "/neuro-nights/static/media/fa-regular-400.914997e1bdfc990d0897.ttf",
+    "static/media/moon-removebg-preview.png": "/neuro-nights/static/media/moon-removebg-preview.8ccad763588fdb777ffd.png",
+    "static/media/fa-regular-400.woff2": "/neuro-nights/static/media/fa-regular-400.89999bdf5d835c012025.woff2",
+    "static/media/home page stars.png": "/neuro-nights/static/media/home page stars.60e698e6cfad6cc93f2a.png",
+    "static/media/Recommended Goals.png": "/neuro-nights/static/media/Recommended Goals.081e8e12a71af1a61ae5.png",
+    "static/media/fa-v4compatibility.ttf": "/neuro-nights/static/media/fa-v4compatibility.da94ef451f4969af06e6.ttf",
+    "static/media/fa-v4compatibility.woff2": "/neuro-nights/static/media/fa-v4compatibility.ea8f94e1d22e0d35ccd4.woff2",
+    "index.html": "/neuro-nights/index.html",
+    "main.e90fdb53.css.map": "/neuro-nights/static/css/main.e90fdb53.css.map",
+    "main.cd833dc6.js.map": "/neuro-nights/static/js/main.cd833dc6.js.map",
+    "488.5bc710ee.chunk.js.map": "/neuro-nights/static/js/488.5bc710ee.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e90fdb53.css",
+    "static/js/main.cd833dc6.js"
+  ]
+}
