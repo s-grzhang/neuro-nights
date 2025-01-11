@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./App.css";
 import logo from "./moon-removebg-preview.png";
 import homePageStars from "./home page stars.png";
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { FaStar, FaArrowRight } from 'react-icons/fa';
 import GoalsPage from "./GoalsPage";
 import RewardsPage from "./RewardsPage";
@@ -10,6 +9,7 @@ import EducationPage from "./EducationPage";
 import DataPage from "./DataPage";
 import AccountPage from "./AccountPage";
 import SubscriptionPage from "./SubscriptionPage";
+import { HashRouter as Router } from 'react-router-dom';
 
 const App = () => {
   const [menuOpen, setMenuOpen] = useState(false);

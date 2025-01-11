@@ -32,7 +32,7 @@ const DataPage = () => {
     datasets: [
       {
         label: 'Sleep Duration (hours)',
-        data: [9, 0, 0, 0, 0, 0, 0], // Example data
+        data: [9, 8, 8, 7, 0, 0, 0], // Example data
         backgroundColor: 'blue',
       },
     ],
