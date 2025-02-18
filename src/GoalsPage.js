@@ -21,6 +21,8 @@ const GoalsPage = ({ onEarnPoints }) => { // Accept onEarnPoints as a prop
     timeEnd: '', // Store end time for bedtime goals
   });
 
+  const [editingGoal, setEditingGoal] = useState(null); // To track the goal being edited
+
   // Function to toggle the menu
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -38,23 +40,45 @@ const GoalsPage = ({ onEarnPoints }) => { // Accept onEarnPoints as a prop
       goalText = `I will sleep from ${newGoal.timeStart} to ${newGoal.timeEnd}.`;
     }
 
-    // Only add the new goal if there's a valid goal text
+    // Only add or update the goal if there's a valid goal text
     if (goalText) {
-      const newGoalData = { id: goals.length + 1, text: goalText, progress: 0 };
-      setGoals([...goals, newGoalData]);
+      if (editingGoal) {
+        // Update the goal
+        const updatedGoals = goals.map(goal =>
+          goal.id === editingGoal.id ? { ...goal, text: goalText, progress: 0 } : goal
+        );
+        setGoals(updatedGoals);
+        setEditingGoal(null); // Reset after editing
+      } else {
+        // Add new goal
+        const newGoalData = { id: goals.length + 1, text: goalText, progress: 0 };
+        setGoals([...goals, newGoalData]);
+      }
       setNewGoal({
         template: '',
         hours: 0,
         days: 0,
         timeStart: '',
         timeEnd: '',
-      }); // Reset after adding the goal
+      }); // Reset after adding/updating the goal
     }
   };
 
   // Function to delete a goal
   const handleDeleteGoal = (id) => {
     setGoals(goals.filter(goal => goal.id !== id));
+  };
+
+  // Function to start editing a goal
+  const handleEditGoal = (goal) => {
+    setNewGoal({
+      template: goal.text.includes('hours') ? 'duration' : goal.text.includes('variance') ? 'consistency' : 'bedtime',
+      hours: goal.text.match(/\d+/) ? parseInt(goal.text.match(/\d+/)[0]) : 0,
+      days: goal.text.includes('days') ? parseInt(goal.text.match(/\d+/)[1]) : 0,
+      timeStart: goal.text.includes('from') ? goal.text.split('from ')[1].split(' to ')[0] : '',
+      timeEnd: goal.text.includes('to') ? goal.text.split('to ')[1] : '',
+    });
+    setEditingGoal(goal);
   };
 
   return (
@@ -90,13 +114,14 @@ const GoalsPage = ({ onEarnPoints }) => { // Accept onEarnPoints as a prop
             goal={goal} 
             onDelete={handleDeleteGoal} 
             onEarnPoints={onEarnPoints} // Pass down the onEarnPoints function
+            onEdit={handleEditGoal} // Pass the edit handler to GoalCard
           />
         ))}
       </div>
 
       {/* Set New Goals */}
       <div className="set-new-goals">
-        <h2>Set New Goals</h2>
+        <h2>{editingGoal ? 'Edit Goal' : 'Set New Goals'}</h2>
 
         {/* Consistency Box */}
         <div className="goal-box-new">

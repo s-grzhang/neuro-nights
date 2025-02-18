@@ -14,6 +14,11 @@ import SubscriptionPage from "./SubscriptionPage";
 const App = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [points, setPoints] = useState(0); // Points state
+  const [goals, setGoals] = useState({
+    duration: "You will sleep for 9 hours tonight.",
+    consistency: "You will avoid a bedtime variance of more than 15 minutes.",
+    bedtime: "You will sleep from 11 PM to 8 AM."
+  });
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
@@ -57,9 +62,10 @@ const App = () => {
           <Route path="data" element={<DataPage />} />
           <Route path="account" element={<AccountPage />} />
           <Route path="subscription" element={<SubscriptionPage />} />
-          <Route path="/" element={<HomePage points={points} handleEarnPoints={handleEarnPoints} />} />
-          <Route path="goals" element={<GoalsPage onEarnPoints={handleEarnPoints} />} />
           <Route path="rewards" element={<RewardsPage points={points} setPoints={setPoints} />} />
+          <Route path="/" element={<HomePage points={points} goals={goals} handleEarnPoints={handleEarnPoints} />} />
+          <Route path="goals" element={<GoalsPage onEarnPoints={handleEarnPoints} goals={goals} setGoals={setGoals} />} />
+
         </Routes>
 
         <footer className="footer">
@@ -70,7 +76,7 @@ const App = () => {
   );
 };
 
-const HomePage = ({ points }) => (
+const HomePage = ({ points, goals }) => (
   <main>
     <div className="status-box">
       <img src={homePageStars} alt="Stars" className="status-box-image" />
@@ -92,9 +98,9 @@ const HomePage = ({ points }) => (
     <div className="todays-goals">
       <h2>Today's Goals</h2>
       <div className="goal-cards">
-        <GoalCard title="Duration" description="You will sleep for 9 hours tonight." link="goals" />
-        <GoalCard title="Consistency" description="You will avoid a bedtime variance of more than 15 minutes." link="goals" />
-        <GoalCard title="Bedtime" description="You will sleep from 11 PM to 8 AM." link="goals" />
+        <GoalCard title="Duration" description={goals.duration} link="goals" />
+        <GoalCard title="Consistency" description={goals.consistency} link="goals" />
+        <GoalCard title="Bedtime" description={goals.bedtime} link="goals" />
       </div>
     </div>
   </main>
