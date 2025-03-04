@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './GoalsPage.css';
+import { useEffect } from 'react';
+import { getDocs } from "firebase/firestore";
 import recommendedGoalsImage from "./Recommended Goals.png";
 import GoalCard from './GoalCard'; // Import the GoalCard component
+import { db } from './firebase'; // Import db (Firestore)
+import { collection, addDoc } from "firebase/firestore"; // Import Firestore methods
 
 const GoalsPage = ({ onEarnPoints }) => { // Accept onEarnPoints as a prop
   const [menuOpen, setMenuOpen] = useState(false);
@@ -28,41 +32,69 @@ const GoalsPage = ({ onEarnPoints }) => { // Accept onEarnPoints as a prop
     setMenuOpen(!menuOpen);
   };
 
-  // Function to handle setting a new goal
-  const handleSetGoal = () => {
-    let goalText = '';
-    // Build goal text based on the inputs
-    if (newGoal.template === 'duration') {
-      goalText = `I will sleep for ${newGoal.hours} hours.`;
-    } else if (newGoal.template === 'consistency') {
-      goalText = `I will avoid a variance of more than ${newGoal.hours} hours every ${newGoal.days} days.`;
-    } else if (newGoal.template === 'bedtime') {
-      goalText = `I will sleep from ${newGoal.timeStart} to ${newGoal.timeEnd}.`;
-    }
+  
+const handleSetGoal = async () => {
+  let goalText = '';
+  // Build goal text based on the inputs
+  if (newGoal.template === 'duration') {
+    goalText = `I will sleep for ${newGoal.hours} hours.`;
+  } else if (newGoal.template === 'consistency') {
+    goalText = `I will avoid a variance of more than ${newGoal.hours} hours every ${newGoal.days} days.`;
+  } else if (newGoal.template === 'bedtime') {
+    goalText = `I will sleep from ${newGoal.timeStart} to ${newGoal.timeEnd}.`;
+  }
 
-    // Only add or update the goal if there's a valid goal text
-    if (goalText) {
-      if (editingGoal) {
-        // Update the goal
-        const updatedGoals = goals.map(goal =>
-          goal.id === editingGoal.id ? { ...goal, text: goalText, progress: 0 } : goal
-        );
-        setGoals(updatedGoals);
-        setEditingGoal(null); // Reset after editing
-      } else {
-        // Add new goal
-        const newGoalData = { id: goals.length + 1, text: goalText, progress: 0 };
-        setGoals([...goals, newGoalData]);
+  // Only add or update the goal if there's a valid goal text
+  if (goalText) {
+    if (editingGoal) {
+      // Update the goal
+      const updatedGoals = goals.map(goal =>
+        goal.id === editingGoal.id ? { ...goal, text: goalText, progress: 0 } : goal
+      );
+      setGoals(updatedGoals);
+      setEditingGoal(null); // Reset after editing
+    } else {
+      // Add new goal to Firestore
+      try {
+        const docRef = await addDoc(collection(db, "goals"), {
+          text: goalText,
+          progress: 0,
+          points: 0,  // You can customize the fields as needed
+        });
+        console.log("Goal added with ID: ", docRef.id);
+        setGoals([...goals, { id: docRef.id, text: goalText, progress: 0 }]);
+      } catch (e) {
+        console.error("Error adding goal: ", e);
       }
-      setNewGoal({
-        template: '',
-        hours: 0,
-        days: 0,
-        timeStart: '',
-        timeEnd: '',
-      }); // Reset after adding/updating the goal
+    }
+    setNewGoal({
+      template: '',
+      hours: 0,
+      days: 0,
+      timeStart: '',
+      timeEnd: '',
+    }); // Reset after adding/updating the goal
+  }
+};
+
+// Fetch goals when component is mounted
+useEffect(() => {
+  const fetchGoals = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, "goals"));
+      const goalsList = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setGoals(goalsList);
+    } catch (e) {
+      console.error("Error getting documents: ", e);
     }
   };
+
+  fetchGoals();
+}, []);
+
 
   // Function to delete a goal
   const handleDeleteGoal = (id) => {
