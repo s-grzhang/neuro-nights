@@ -6,7 +6,7 @@ import { getDocs } from "firebase/firestore";
 import recommendedGoalsImage from "./Recommended Goals.png";
 import GoalCard from './GoalCard'; // Import the GoalCard component
 import { db } from './firebase'; // Import db (Firestore)
-import { collection, addDoc } from "firebase/firestore"; // Import Firestore methods
+import { doc, deleteDoc, collection, addDoc } from "firebase/firestore"; // Import Firestore methods
 
 const GoalsPage = ({ onEarnPoints }) => { // Accept onEarnPoints as a prop
   const [menuOpen, setMenuOpen] = useState(false);
@@ -97,8 +97,14 @@ useEffect(() => {
 
 
   // Function to delete a goal
-  const handleDeleteGoal = (id) => {
-    setGoals(goals.filter(goal => goal.id !== id));
+  const handleDeleteGoal = async (id) => {
+    try {
+      await deleteDoc(doc(db, "goals", id)); // Delete from Firestore
+      setGoals(goals.filter(goal => goal.id !== id)); // Update local state
+      console.log(`Goal with ID ${id} deleted.`);
+    } catch (error) {
+      console.error("Error deleting goal:", error);
+    }
   };
 
   // Function to start editing a goal
