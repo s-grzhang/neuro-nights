@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import logo from "./moon-removebg-preview.png";
 import homePageStars from "./home page stars.png";
@@ -10,16 +10,45 @@ import EducationPage from "./EducationPage";
 import DataPage from "./DataPage";
 import AccountPage from "./AccountPage";
 import SubscriptionPage from "./SubscriptionPage";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "./firebase"; // Firestore config
 
 const App = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [points, setPoints] = useState(0); // Points state
   const [goals, setGoals] = useState({
-    duration: "You will sleep for 9 hours tonight.",
-    consistency: "You will avoid a bedtime variance of more than 15 minutes.",
-    bedtime: "You will sleep from 11 PM to 8 AM."
+    duration: "Loading...",
+    consistency: "Loading...",
+    bedtime: "Loading...",
   });
+  useEffect(() => {
+    const fetchGoals = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "goals"));
+        let latestGoals = {};
+        querySnapshot.forEach((doc) => {
+          const goalText = doc.data().text;
+          if (goalText.includes("sleep for")) {
+            latestGoals.duration = goalText;
+          } else if (goalText.includes("variance")) {
+            latestGoals.consistency = goalText;
+          } else if (goalText.includes("sleep from")) {
+            latestGoals.bedtime = goalText;
+          }
+        });
 
+        setGoals({
+          duration: latestGoals.duration || "No duration goal set.",
+          consistency: latestGoals.consistency || "No consistency goal set.",
+          bedtime: latestGoals.bedtime || "No bedtime goal set.",
+        });
+      } catch (error) {
+        console.error("Error fetching goals:", error);
+      }
+    };
+
+    fetchGoals();
+  }, []); // Runs once when the home page loads
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   // Function to handle earning points
