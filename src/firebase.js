@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -11,7 +12,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyD8YODQcVg3WoV3v-ktvzlM_n8253hMubo",
   authDomain: "neuro-nights.firebaseapp.com",
   projectId: "neuro-nights",
-  storageBucket: "neuro-nights.firebasestorage.app",
+  storageBucket: "neuro-nights.appspot.com",
   messagingSenderId: "596789184601",
   appId: "1:596789184601:web:b09f007840476ca1d10948",
   measurementId: "G-RBP6XYRPCY"
@@ -20,6 +21,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-const db = getFirestore(app); // Add this line to get Firestore
+const db = getFirestore(app);
+const auth = getAuth(app);
 
-export { db }; // Export it so you can use it elsewhere
+export { db, auth };

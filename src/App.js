@@ -12,15 +12,38 @@ import AccountPage from "./AccountPage";
 import SubscriptionPage from "./SubscriptionPage";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "./firebase"; // Firestore config
+import { getAuth, onAuthStateChanged, signInAnonymously } from "firebase/auth"; // Add auth imports
 
 const App = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [points, setPoints] = useState(0); // Points state
+  const [userId, setUserId] = useState(null); // Add userId state
   const [goals, setGoals] = useState({
     duration: "Loading...",
     consistency: "Loading...",
     bedtime: "Loading...",
   });
+
+  // Initialize auth and handle anonymous sign-in
+  useEffect(() => {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in
+        setUserId(user.uid);
+      } else {
+        // No user is signed in, create anonymous user
+        signInAnonymously(auth)
+          .then((result) => {
+            setUserId(result.user.uid);
+          })
+          .catch((error) => {
+            console.error("Anonymous auth error:", error);
+          });
+      }
+    });
+  }, []);
+
   useEffect(() => {
     const fetchGoals = async () => {
       try {
@@ -91,7 +114,7 @@ const App = () => {
           <Route path="data" element={<DataPage />} />
           <Route path="account" element={<AccountPage />} />
           <Route path="subscription" element={<SubscriptionPage />} />
-          <Route path="rewards" element={<RewardsPage points={points} setPoints={setPoints} />} />
+          <Route path="rewards" element={<RewardsPage points={points} setPoints={setPoints} userId={userId} />} />
           <Route path="/" element={<HomePage points={points} goals={goals} handleEarnPoints={handleEarnPoints} />} />
           <Route path="goals" element={<GoalsPage onEarnPoints={handleEarnPoints} goals={goals} setGoals={setGoals} />} />
 
