@@ -1,62 +1,146 @@
 .account-page {
-  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
   padding: 20px;
-  text-align: left;
-  box-sizing: border-box; /* Ensure padding doesn't affect width */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.account-page h1 {
+  margin-top: 60px;
+  margin-bottom: 30px;
+  color: #333;
+  text-align: center;
+}
+
+/* Profile summary */
+.profile-summary {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .profile-icon {
-  margin-top: 90px !important;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
+  background-color: #FF8C00;
   border-radius: 50%;
-  background-color: #FFFFC5;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 50px;
-  margin-bottom: 20px;
+  margin-right: 20px;
+  flex-shrink: 0;
 }
 
 .profile-icon svg {
-  stroke: #FFD580;
+  width: 50px;
+  height: 50px;
+  color: white;
 }
 
-label {
+.profile-details {
+  flex: 1;
+}
+
+.profile-details h2 {
+  margin: 0 0 5px 0;
+  color: #333;
+}
+
+.profile-details p {
+  margin: 0 0 5px 0;
+  color: #666;
+}
+
+.points-display {
   font-size: 16px;
-  font-weight: bold;
-  margin-top: 10px;
-  display: block;
+  color: #333;
 }
 
-.input-field,
-.dropdown {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box; /* Ensure padding doesn't affect width */
-}
-
-h2 {
+.points-display strong {
+  color: #FF8C00;
   font-size: 18px;
-  margin-top: 20px;
+}
+
+/* Success message */
+.success-message {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  padding: 12px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Form groups */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #444;
+}
+
+.input-field, .dropdown {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333;
+  background-color: white;
+}
+
+.input-field:disabled, .dropdown:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}
+
+.input-field:focus, .dropdown:focus {
+  outline: none;
+  border-color: #FF8C00;
+  box-shadow: 0 0 0 2px rgba(255, 140, 0, 0.2);
+}
+
+/* Section styling */
+.section {
+  margin-bottom: 30px;
+}
+
+.section h2 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+/* Privacy toggle switch */
+.privacy-setting {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 10px;
 }
 
-.privacy-setting {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.privacy-description {
+  font-size: 14px;
+  color: #666;
   margin-bottom: 20px;
 }
 
 .switch {
   position: relative;
   display: inline-block;
-  width: 40px;
-  height: 20px;
+  width: 50px;
+  height: 24px;
 }
 
 .switch input {
@@ -67,154 +151,112 @@ h2 {
 
 .slider {
   position: absolute;
+  cursor: pointer;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: purple;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: 0.4s;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
 }
 
 .slider:before {
   position: absolute;
   content: "";
-  height: 14px;
-  width: 14px;
-  left: 3px;
-  bottom: 3px;
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
   background-color: white;
+  transition: .4s;
   border-radius: 50%;
-  transition: 0.4s;
 }
 
 input:checked + .slider {
-  background-color: blue;
+  background-color: #FF8C00;
+}
+
+input:disabled + .slider {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 input:checked + .slider:before {
-  transform: translateX(20px);
+  transform: translateX(26px);
 }
 
-.orange-button {
-  background-color: orange;
-  color: white;
-  border: none;
-  padding: 10px 20px;
+/* Buttons container */
+.buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.button {
+  padding: 12px 24px;
   border-radius: 5px;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  margin-top: 10px;
+  transition: all 0.2s ease;
+  border: none;
+  text-align: center;
+  min-width: 120px;
 }
 
-.orange-button:hover {
-  background-color: darkorange;
+.button.primary {
+  background-color: #FF8C00;
+  color: white;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 1024px) {
-  .profile-icon {
-    margin-top: 80px;
-    width: 80px;
-    height: 80px;
-    font-size: 40px;
-  }
-
-  h2 {
-    font-size: 16px;
-  }
-
-  .input-field,
-  .dropdown {
-    padding: 8px;
-  }
-
-  .orange-button {
-    font-size: 14px;
-    padding: 8px 16px;
-  }
+.button.primary:hover {
+  background-color: #e07b00;
 }
 
-@media (max-width: 768px) {
-  .profile-icon {
-    margin-top: 60px;
-    width: 70px;
-    height: 70px;
-    font-size: 35px;
-  }
+.button.secondary {
+  background-color: #f5f5f5;
+  color: #333;
+  border: 1px solid #ddd;
+}
 
-  label {
-    font-size: 14px;
-  }
+.button.secondary:hover {
+  background-color: #e8e8e8;
+}
 
-  .privacy-setting {
+.button.logout {
+  background-color: #f44336;
+  color: white;
+  margin-left: auto;
+}
+
+.button.logout:hover {
+  background-color: #d32f2f;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .profile-summary {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+    text-align: center;
   }
-
-  .orange-button {
-    font-size: 12px;
-    padding: 6px 12px;
-  }
-}
-
-@media (max-width: 480px) {
-  .account-page {
-    padding: 10px;
-  }
-
+  
   .profile-icon {
-    margin-top: 40px;
-    width: 60px;
-    height: 60px;
-    font-size: 30px;
+    margin-right: 0;
+    margin-bottom: 15px;
   }
-
-  label {
-    font-size: 12px;
+  
+  .buttons-container {
+    flex-direction: column;
   }
-
-  h2 {
-    font-size: 14px;
+  
+  .button {
+    width: 100%;
   }
-
-  .orange-button {
-    font-size: 10px;
-    padding: 5px 10px;
-  }
-}
-
-/* Specific adjustments for iPhone XS size (375 x 812px) */
-@media (max-width: 375px) {
-  .account-page {
-    padding: 15px; /* Adjust padding for smaller screen */
-  }
-
-  .profile-icon {
-    margin-top: 60px; /* Adjust margin-top for better positioning */
-    width: 70px;
-    height: 70px;
-    font-size: 35px;
-  }
-
-  label {
-    font-size: 14px; /* Smaller label font */
-  }
-
-  h2 {
-    font-size: 16px; /* Adjust heading size */
-  }
-
-  .input-field,
-  .dropdown {
-    padding: 8px; /* Adjust padding for smaller fields */
-  }
-
-  .orange-button {
-    font-size: 14px;
-    padding: 8px 16px;
+  
+  .button.logout {
+    margin-left: 0;
+    margin-top: 10px;
   }
 }

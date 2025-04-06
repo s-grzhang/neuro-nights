@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import logo from "./moon-removebg-preview.png";
 import homePageStars from "./home page stars.png";
-import { HashRouter as Router, Routes, Route, Link, useNavigate } from "react-router-dom";
-import { FaStar, FaArrowRight } from 'react-icons/fa';
+import { HashRouter as Router, Routes, Route, Link, useNavigate, Navigate, useLocation } from "react-router-dom";
+import { FaStar, FaArrowRight, FaSignOutAlt } from 'react-icons/fa';
 import GoalsPage from "./GoalsPage";
 import RewardsPage from "./RewardsPage";
 import EducationPage from "./EducationPage";
@@ -12,38 +12,58 @@ import AccountPage from "./AccountPage";
 import SubscriptionPage from "./SubscriptionPage";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "./firebase"; // Firestore config
-import { getAuth, onAuthStateChanged, signInAnonymously } from "firebase/auth"; // Add auth imports
+import LoginModal from "./LoginModal";
+import { AuthProvider, useAuth } from "./AuthContext";
 
 const App = () => {
+  return (
+    <AuthProvider>
+      <Router>
+        <AppContent />
+      </Router>
+    </AuthProvider>
+  );
+};
+
+const AppContent = () => {
+  const { userData, isAuthenticated, userId, logout, updateUserData } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [points, setPoints] = useState(0); // Points state
-  const [userId, setUserId] = useState(null); // Add userId state
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
+  const location = useLocation();
   const [goals, setGoals] = useState({
     duration: "Loading...",
     consistency: "Loading...",
     bedtime: "Loading...",
   });
 
-  // Initialize auth and handle anonymous sign-in
-  useEffect(() => {
-    const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in
-        setUserId(user.uid);
-      } else {
-        // No user is signed in, create anonymous user
-        signInAnonymously(auth)
-          .then((result) => {
-            setUserId(result.user.uid);
-          })
-          .catch((error) => {
-            console.error("Anonymous auth error:", error);
-          });
-      }
-    });
-  }, []);
+  // Get points from user data
+  const points = userData?.points || 0;
 
+  // Open login modal if redirected with state
+  useEffect(() => {
+    if (location.state?.openLoginModal) {
+      setLoginModalOpen(true);
+      // Clear the state to prevent reopening
+      window.history.replaceState({}, document.title);
+    }
+  }, [location]);
+
+  // Function to handle earning points and update Firestore
+  const handleEarnPoints = (earnedPoints) => {
+    if (isAuthenticated) {
+      const newPoints = (userData?.points || 0) + earnedPoints;
+      updateUserData({ points: newPoints });
+    }
+  };
+
+  // Toggle side menu
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+
+  // Open/close login modal
+  const openLoginModal = () => setLoginModalOpen(true);
+  const closeLoginModal = () => setLoginModalOpen(false);
+  
+  // Fetch goals from Firestore
   useEffect(() => {
     const fetchGoals = async () => {
       try {
@@ -71,64 +91,108 @@ const App = () => {
     };
 
     fetchGoals();
-  }, []); // Runs once when the home page loads
-  const toggleMenu = () => setMenuOpen(!menuOpen);
-
-  // Function to handle earning points
-  const handleEarnPoints = (earnedPoints) => setPoints(prevPoints => prevPoints + earnedPoints);
+  }, []);
 
   return (
-    <Router>
-      <div>
-        <header className="fixed-header">
-          <h1>
-            NeuroNights
-            <img src={logo} alt="NeuroNights Logo" className="logo" />
-          </h1>
-          <div className="menu-icon" onClick={toggleMenu}>
-            <div className="line"></div>
-            <div className="line"></div>
-          </div>
-        </header>
-
-        <div className={`side-menu ${menuOpen ? "open" : ""}`}>
-          <div className="menu-icon" onClick={toggleMenu}>
-            <div className="line"></div>
-            <div className="line"></div>
-          </div>
-          <nav>
-            <ul>
-              <AccountNavigation />
-              <li><Link to="/">HOME</Link></li>
-              <li><Link to="goals">GOALS</Link></li>
-              <li><Link to="rewards">REWARDS</Link></li>
-              <li><Link to="data">DATA</Link></li>
-              <li><Link to="education">EDUCATION</Link></li>
-              <li><Link to="subscription">SUBSCRIPTION</Link></li>
-            </ul>
-          </nav>
+    <div>
+      <header className="fixed-header">
+        <h1>
+          NeuroNights
+          <img src={logo} alt="NeuroNights Logo" className="logo" />
+        </h1>
+        <div className="menu-icon" onClick={toggleMenu}>
+          <div className="line"></div>
+          <div className="line"></div>
         </div>
+      </header>
 
-        <Routes>
-          <Route path="education" element={<EducationPage />} />
-          <Route path="data" element={<DataPage />} />
-          <Route path="account" element={<AccountPage />} />
-          <Route path="subscription" element={<SubscriptionPage />} />
-          <Route path="rewards" element={<RewardsPage points={points} setPoints={setPoints} userId={userId} />} />
-          <Route path="/" element={<HomePage points={points} goals={goals} handleEarnPoints={handleEarnPoints} />} />
-          <Route path="goals" element={<GoalsPage onEarnPoints={handleEarnPoints} goals={goals} setGoals={setGoals} />} />
-
-        </Routes>
-
-        <footer className="footer">
-          <p>© NeuroNights</p>
-        </footer>
+      <div className={`side-menu ${menuOpen ? "open" : ""}`}>
+        <div className="menu-icon" onClick={toggleMenu}>
+          <div className="line"></div>
+          <div className="line"></div>
+        </div>
+        <nav>
+          <ul>
+            <AccountNavigation 
+              isAuthenticated={isAuthenticated}
+              openLoginModal={openLoginModal} 
+            />
+            <li><Link to="/" onClick={() => setMenuOpen(false)}>HOME</Link></li>
+            <li><Link to="goals" onClick={() => setMenuOpen(false)}>GOALS</Link></li>
+            <li><Link to="rewards" onClick={() => setMenuOpen(false)}>REWARDS</Link></li>
+            <li><Link to="data" onClick={() => setMenuOpen(false)}>DATA</Link></li>
+            <li><Link to="education" onClick={() => setMenuOpen(false)}>EDUCATION</Link></li>
+            <li><Link to="subscription" onClick={() => setMenuOpen(false)}>SUBSCRIPTION</Link></li>
+            {isAuthenticated && (
+              <li className="logout-item" onClick={() => { logout(); setMenuOpen(false); }}>
+                <FaSignOutAlt /> LOGOUT
+              </li>
+            )}
+          </ul>
+        </nav>
       </div>
-    </Router>
+
+      <Routes>
+        <Route path="education" element={
+          isAuthenticated ? 
+            <EducationPage /> : 
+            <Navigate to="/" replace state={{ openLoginModal: true }} />
+        } />
+        <Route path="data" element={
+          isAuthenticated ? 
+            <DataPage /> : 
+            <Navigate to="/" replace state={{ openLoginModal: true }} />
+        } />
+        <Route path="account" element={
+          isAuthenticated ? 
+            <AccountPage userData={userData} updateUserData={updateUserData} /> : 
+            <Navigate to="/" replace state={{ openLoginModal: true }} />
+        } />
+        <Route path="subscription" element={
+          isAuthenticated ? 
+            <SubscriptionPage /> : 
+            <Navigate to="/" replace state={{ openLoginModal: true }} />
+        } />
+        <Route path="rewards" element={
+          isAuthenticated ? 
+            <RewardsPage 
+              points={points} 
+              setPoints={(newPoints) => updateUserData({ points: newPoints })} 
+              userId={userId} 
+            /> : 
+            <Navigate to="/" replace state={{ openLoginModal: true }} />
+        } />
+        <Route path="/" element={
+          <HomePage 
+            points={points} 
+            goals={goals} 
+            handleEarnPoints={handleEarnPoints}
+            isAuthenticated={isAuthenticated}
+            openLoginModal={openLoginModal}
+          />
+        } />
+        <Route path="goals" element={
+          isAuthenticated ? 
+            <GoalsPage 
+              onEarnPoints={handleEarnPoints} 
+              goals={goals} 
+              setGoals={setGoals} 
+            /> : 
+            <Navigate to="/" replace state={{ openLoginModal: true }} />
+        } />
+      </Routes>
+
+      {/* Login Modal */}
+      <LoginModal isOpen={loginModalOpen} onClose={closeLoginModal} />
+
+      <footer className="footer">
+        <p>© NeuroNights</p>
+      </footer>
+    </div>
   );
 };
 
-const HomePage = ({ points, goals }) => (
+const HomePage = ({ points, goals, handleEarnPoints, isAuthenticated, openLoginModal }) => (
   <main>
     <div className="status-box">
       <img src={homePageStars} alt="Stars" className="status-box-image" />
@@ -150,30 +214,81 @@ const HomePage = ({ points, goals }) => (
     <div className="todays-goals">
       <h2>Today's Goals</h2>
       <div className="goal-cards">
-        <GoalCard title="Duration" description={goals.duration} link="goals" />
-        <GoalCard title="Consistency" description={goals.consistency} link="goals" />
-        <GoalCard title="Bedtime" description={goals.bedtime} link="goals" />
+        <GoalCard 
+          title="Duration" 
+          description={goals.duration} 
+          link="goals" 
+          isAuthenticated={isAuthenticated}
+          openLoginModal={openLoginModal}
+        />
+        <GoalCard 
+          title="Consistency" 
+          description={goals.consistency} 
+          link="goals" 
+          isAuthenticated={isAuthenticated}
+          openLoginModal={openLoginModal}
+        />
+        <GoalCard 
+          title="Bedtime" 
+          description={goals.bedtime} 
+          link="goals" 
+          isAuthenticated={isAuthenticated}
+          openLoginModal={openLoginModal}
+        />
       </div>
     </div>
+    
+    {!isAuthenticated && (
+      <div className="login-cta">
+        <p>Sign up or log in to track your sleep goals and earn rewards!</p>
+        <button className="cta-button" onClick={openLoginModal}>Get Started</button>
+      </div>
+    )}
   </main>
 );
 
-const GoalCard = ({ title, description, link }) => (
-  <div className="goal-card">
-    <div className="goal-text">
-      <h3>{title}</h3>
-      <p>{description}</p>
-    </div>
-    <Link to={link} className="goal-link">
-      <FaArrowRight />
-    </Link>
-  </div>
-);
-
-const AccountNavigation = () => {
+const GoalCard = ({ title, description, link, isAuthenticated, openLoginModal }) => {
   const navigate = useNavigate();
+  
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (isAuthenticated) {
+      navigate(link);
+    } else {
+      openLoginModal();
+    }
+  };
+  
   return (
-    <div className="account-icon" onClick={() => navigate("account")}>
+    <div className="goal-card">
+      <div className="goal-text">
+        <h3>{title}</h3>
+        <p>{description}</p>
+      </div>
+      <a href={`#/${link}`} className="goal-link" onClick={handleClick}>
+        <FaArrowRight />
+      </a>
+    </div>
+  );
+};
+
+const AccountNavigation = ({ isAuthenticated, openLoginModal }) => {
+  const navigate = useNavigate();
+  
+  const handleAccountClick = () => {
+    if (isAuthenticated) {
+      navigate("account");
+    } else {
+      openLoginModal();
+    }
+  };
+
+  return (
+    <div 
+      className="account-icon" 
+      onClick={handleAccountClick}
+      title={isAuthenticated ? "My Account" : "Login / Register"}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"

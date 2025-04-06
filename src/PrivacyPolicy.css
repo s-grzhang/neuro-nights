@@ -1,0 +1,99 @@
+.privacy-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1100; /* Higher than login modal */
+}
+
+.privacy-modal {
+  background-color: white;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 600px;
+  padding: 25px;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.privacy-modal .close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #666;
+}
+
+.privacy-modal .close-button:hover {
+  color: #000;
+}
+
+.privacy-modal h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+  font-size: 24px;
+}
+
+.privacy-content {
+  color: #333;
+}
+
+.privacy-content h3 {
+  color: #FF8C00;
+  margin: 20px 0 10px 0;
+  font-size: 18px;
+}
+
+.privacy-content p, 
+.privacy-content ul {
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.privacy-content ul {
+  padding-left: 20px;
+}
+
+.privacy-content li {
+  margin-bottom: 8px;
+}
+
+.privacy-content .last-updated {
+  font-style: italic;
+  text-align: right;
+  margin-top: 30px;
+  color: #666;
+  font-size: 14px;
+}
+
+@media (max-width: 480px) {
+  .privacy-modal {
+    padding: 20px;
+    width: 95%;
+  }
+  
+  .privacy-modal h2 {
+    font-size: 22px;
+  }
+  
+  .privacy-content h3 {
+    font-size: 16px;
+  }
+  
+  .privacy-content p, 
+  .privacy-content ul {
+    font-size: 14px;
+  }
+} 
