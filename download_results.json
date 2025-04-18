@@ -1,0 +1,187 @@
+{
+  "success": 20,
+  "coversOnly": 0,
+  "failed": 0,
+  "books": [
+    {
+      "title": "Alice's Adventures in Wonderland",
+      "author": "Lewis Carroll",
+      "genre": "science_fiction",
+      "gutenbergId": 40846,
+      "bookPath": "/home/gzhang/neuro-nights/public/books/science_fiction/alice_s_adventures_in_wonderland.epub",
+      "coverPath": "/home/gzhang/neuro-nights/public/book_covers/science_fiction/alice_s_adventures_in_wonderland_cover.jpg",
+      "success": true
+    },
+    {
+      "title": "Frankenstein or The Modern Prometheus",
+      "author": "Mary Shelley",
+      "genre": "science_fiction",
+      "gutenbergId": 4709,
+      "bookPath": "/home/gzhang/neuro-nights/public/books/science_fiction/frankenstein_or_the_modern_prometheus.epub",
+      "coverPath": "/home/gzhang/neuro-nights/public/book_covers/science_fiction/frankenstein_or_the_modern_prometheus_cover.jpg",
+      "success": true
+    },
+    {
+      "title": "The Wonderful Wizard of Oz",
+      "author": "L. Frank Baum",
+      "genre": "science_fiction",
+      "gutenbergId": 45973,
+      "bookPath": "/home/gzhang/neuro-nights/public/books/science_fiction/the_wonderful_wizard_of_oz.epub",
+      "coverPath": "/home/gzhang/neuro-nights/public/book_covers/science_fiction/the_wonderful_wizard_of_oz_cover.jpg",
+      "success": true
+    },
+    {
+      "title": "The Time Machine",
+      "author": "H. G. Wells",
+      "genre": "science_fiction",
+      "gutenbergId": 1274,
+      "bookPath": "/home/gzhang/neuro-nights/public/books/science_fiction/the_time_machine.epub",
+      "coverPath": "/home/gzhang/neuro-nights/public/book_covers/science_fiction/the_time_machine_cover.jpg",
+      "success": true
+    },
+    {
+      "title": "The Lost World",
+      "author": "Arthur Conan Doyle",
+      "genre": "science_fiction",
+      "gutenbergId": 28156,
+      "bookPath": "/home/gzhang/neuro-nights/public/books/science_fiction/the_lost_world.epub",
+      "coverPath": "/home/gzhang/neuro-nights/public/book_covers/science_fiction/the_lost_world_cover.jpg",
+      "success": true
+    },
+    {
+      "title": "Alice's Adventures in Wonderland",
+      "author": "Lewis Carroll",
+      "genre": "fantasy",
+      "gutenbergId": 27480,
+      "bookPath": "/home/gzhang/neuro-nights/public/books/fantasy/alice_s_adventures_in_wonderland.epub",
+      "coverPath": "/home/gzhang/neuro-nights/public/book_covers/fantasy/alice_s_adventures_in_wonderland_cover.jpg",
+      "success": true
+    },
+    {
+      "title": "The Wonderful Wizard of Oz",
+      "author": "L. Frank Baum",
+      "genre": "fantasy",
+      "gutenbergId": 27050,
+      "bookPath": "/home/gzhang/neuro-nights/public/books/fantasy/the_wonderful_wizard_of_oz.epub",
+      "coverPath": "/home/gzhang/neuro-nights/public/book_covers/fantasy/the_wonderful_wizard_of_oz_cover.jpg",
+      "success": true
+    },
+    {
+      "title": "Treasure Island",
+      "author": "Robert Louis Stevenson",
+      "genre": "fantasy",
+      "gutenbergId": 36400,
+      "bookPath": "/home/gzhang/neuro-nights/public/books/fantasy/treasure_island.epub",
+      "coverPath": "/home/gzhang/neuro-nights/public/book_covers/fantasy/treasure_island_cover.jpg",
+      "success": true
+    },
+    {
+      "title": "Gulliver's Travels",
+      "author": "Jonathan Swift",
+      "genre": "fantasy",
+      "gutenbergId": 39,
+      "bookPath": "/home/gzhang/neuro-nights/public/books/fantasy/gulliver_s_travels.epub",
+      "coverPath": "/home/gzhang/neuro-nights/public/book_covers/fantasy/gulliver_s_travels_cover.jpg",
+      "success": true
+    },
+    {
+      "title": "The Prince",
+      "author": "Niccolò Machiavelli",
+      "genre": "fantasy",
+      "gutenbergId": 27898,
+      "bookPath": "/home/gzhang/neuro-nights/public/books/fantasy/the_prince.epub",
+      "coverPath": "/home/gzhang/neuro-nights/public/book_covers/fantasy/the_prince_cover.jpg",
+      "success": true
+    },
+    {
+      "title": "The Hound of the Baskervilles",
+      "author": "Arthur Conan Doyle",
+      "genre": "mystery",
+      "gutenbergId": 57562,
+      "bookPath": "/home/gzhang/neuro-nights/public/books/mystery/the_hound_of_the_baskervilles.epub",
+      "coverPath": "/home/gzhang/neuro-nights/public/book_covers/mystery/the_hound_of_the_baskervilles_cover.jpg",
+      "success": true
+    },
+    {
+      "title": "The Adventures of Sherlock Holmes [12 stories]",
+      "author": "Arthur Conan Doyle",
+      "genre": "mystery",
+      "gutenbergId": 7948,
+      "bookPath": "/home/gzhang/neuro-nights/public/books/mystery/the_adventures_of_sherlock_holmes_12_stories_.epub",
+      "coverPath": "/home/gzhang/neuro-nights/public/book_covers/mystery/the_adventures_of_sherlock_holmes_12_stories__cover.jpg",
+      "success": true
+    },
+    {
+      "title": "The Mysterious Affair at Styles",
+      "author": "Agatha Christie",
+      "genre": "mystery",
+      "gutenbergId": 56014,
+      "bookPath": "/home/gzhang/neuro-nights/public/books/mystery/the_mysterious_affair_at_styles.epub",
+      "coverPath": "/home/gzhang/neuro-nights/public/book_covers/mystery/the_mysterious_affair_at_styles_cover.jpg",
+      "success": true
+    },
+    {
+      "title": "The Secret Adversary",
+      "author": "Agatha Christie",
+      "genre": "mystery",
+      "gutenbergId": 34214,
+      "bookPath": "/home/gzhang/neuro-nights/public/books/mystery/the_secret_adversary.epub",
+      "coverPath": "/home/gzhang/neuro-nights/public/book_covers/mystery/the_secret_adversary_cover.jpg",
+      "success": true
+    },
+    {
+      "title": "The mystery of Edwin Drood",
+      "author": "Charles Dickens",
+      "genre": "mystery",
+      "gutenbergId": 37405,
+      "bookPath": "/home/gzhang/neuro-nights/public/books/mystery/the_mystery_of_edwin_drood.epub",
+      "coverPath": "/home/gzhang/neuro-nights/public/book_covers/mystery/the_mystery_of_edwin_drood_cover.jpg",
+      "success": true
+    },
+    {
+      "title": "The selfish gene",
+      "author": "Richard Dawkins",
+      "genre": "non_fiction",
+      "gutenbergId": 6398,
+      "bookPath": "/home/gzhang/neuro-nights/public/books/non_fiction/the_selfish_gene.epub",
+      "coverPath": "/home/gzhang/neuro-nights/public/book_covers/non_fiction/the_selfish_gene_cover.jpg",
+      "success": true
+    },
+    {
+      "title": "Jujitsuffragettes",
+      "author": "Clément Xavier",
+      "genre": "non_fiction",
+      "gutenbergId": 31337,
+      "bookPath": "/home/gzhang/neuro-nights/public/books/non_fiction/jujitsuffragettes.epub",
+      "coverPath": "/home/gzhang/neuro-nights/public/book_covers/non_fiction/jujitsuffragettes_cover.jpg",
+      "success": true
+    },
+    {
+      "title": "Body Language",
+      "author": "Julius Fast",
+      "genre": "non_fiction",
+      "gutenbergId": 59311,
+      "bookPath": "/home/gzhang/neuro-nights/public/books/non_fiction/body_language.epub",
+      "coverPath": "/home/gzhang/neuro-nights/public/book_covers/non_fiction/body_language_cover.jpg",
+      "success": true
+    },
+    {
+      "title": "Vagina Problems",
+      "author": "Lara Parker",
+      "genre": "non_fiction",
+      "gutenbergId": 20537,
+      "bookPath": "/home/gzhang/neuro-nights/public/books/non_fiction/vagina_problems.epub",
+      "coverPath": "/home/gzhang/neuro-nights/public/book_covers/non_fiction/vagina_problems_cover.jpg",
+      "success": true
+    },
+    {
+      "title": "Backgammon",
+      "author": "Don Stern",
+      "genre": "non_fiction",
+      "gutenbergId": 52636,
+      "bookPath": "/home/gzhang/neuro-nights/public/books/non_fiction/backgammon.epub",
+      "coverPath": "/home/gzhang/neuro-nights/public/book_covers/non_fiction/backgammon_cover.jpg",
+      "success": true
+    }
+  ]
+}

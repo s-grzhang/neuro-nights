@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/neuro-nights/static/css/main.e90fdb53.css",
-    "main.js": "/neuro-nights/static/js/main.e8b3215e.js",
+    "main.css": "/neuro-nights/static/css/main.2c89a0c6.css",
+    "main.js": "/neuro-nights/static/js/main.7d2d6a28.js",
     "static/js/488.5bc710ee.chunk.js": "/neuro-nights/static/js/488.5bc710ee.chunk.js",
     "static/media/fa-solid-900.ttf": "/neuro-nights/static/media/fa-solid-900.2582b0e4bcf85eceead0.ttf",
     "static/media/fa-brands-400.ttf": "/neuro-nights/static/media/fa-brands-400.1815e00441357e01619e.ttf",
@@ -15,12 +15,12 @@
     "static/media/fa-v4compatibility.ttf": "/neuro-nights/static/media/fa-v4compatibility.da94ef451f4969af06e6.ttf",
     "static/media/fa-v4compatibility.woff2": "/neuro-nights/static/media/fa-v4compatibility.ea8f94e1d22e0d35ccd4.woff2",
     "index.html": "/neuro-nights/index.html",
-    "main.e90fdb53.css.map": "/neuro-nights/static/css/main.e90fdb53.css.map",
-    "main.e8b3215e.js.map": "/neuro-nights/static/js/main.e8b3215e.js.map",
+    "main.2c89a0c6.css.map": "/neuro-nights/static/css/main.2c89a0c6.css.map",
+    "main.7d2d6a28.js.map": "/neuro-nights/static/js/main.7d2d6a28.js.map",
     "488.5bc710ee.chunk.js.map": "/neuro-nights/static/js/488.5bc710ee.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e90fdb53.css",
-    "static/js/main.e8b3215e.js"
+    "static/css/main.2c89a0c6.css",
+    "static/js/main.7d2d6a28.js"
   ]
 }

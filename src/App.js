@@ -93,6 +93,20 @@ const AppContent = () => {
     fetchGoals();
   }, []);
 
+  const menuItems = [
+    { id: 'home', title: 'Home', path: '/' },
+    { id: 'data', title: 'Sleep Data', path: '/data' },
+    { id: 'rewards', title: 'Rewards', path: '/rewards' },
+    { id: 'goals', title: 'Goals', path: '/goals' },
+    { id: 'education', title: 'Education', path: '/education' },
+    { id: 'subscription', title: 'Subscription', path: '/subscription' },
+  ];
+
+  const appInfo = {
+    version: '1.0.0',
+    platform: 'Android',
+  };
+
   return (
     <div>
       <header className="fixed-header">
@@ -107,6 +121,10 @@ const AppContent = () => {
       </header>
 
       <div className={`side-menu ${menuOpen ? "open" : ""}`}>
+        <div className="menu-header">
+          <h2>NeuroNights</h2>
+          <p className="app-version">v{appInfo.version} ({appInfo.platform})</p>
+        </div>
         <div className="menu-icon" onClick={toggleMenu}>
           <div className="line"></div>
           <div className="line"></div>
@@ -117,12 +135,9 @@ const AppContent = () => {
               isAuthenticated={isAuthenticated}
               openLoginModal={openLoginModal} 
             />
-            <li><Link to="/" onClick={() => setMenuOpen(false)}>HOME</Link></li>
-            <li><Link to="goals" onClick={() => setMenuOpen(false)}>GOALS</Link></li>
-            <li><Link to="rewards" onClick={() => setMenuOpen(false)}>REWARDS</Link></li>
-            <li><Link to="data" onClick={() => setMenuOpen(false)}>DATA</Link></li>
-            <li><Link to="education" onClick={() => setMenuOpen(false)}>EDUCATION</Link></li>
-            <li><Link to="subscription" onClick={() => setMenuOpen(false)}>SUBSCRIPTION</Link></li>
+            {menuItems.map((item) => (
+              <li key={item.id}><Link to={item.path} onClick={() => setMenuOpen(false)}>{item.title}</Link></li>
+            ))}
             {isAuthenticated && (
               <li className="logout-item" onClick={() => { logout(); setMenuOpen(false); }}>
                 <FaSignOutAlt /> LOGOUT

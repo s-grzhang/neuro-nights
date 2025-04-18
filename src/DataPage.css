@@ -1,131 +1,592 @@
 .data-page {
   padding: 20px;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-top: 100px;
 }
 
-.today-box {
-  margin-top: 80px !important;
-  background: linear-gradient(to bottom, yellow, orange);
-  border-radius: 15px;
+/* Card Styling */
+.sleep-summary-card,
+.weekly-trend-card,
+.brain-fact-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
   padding: 20px;
-  margin-bottom: 20px;
-  color: white;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.chart-container,
-.line-chart-container {
-  margin: 20px 0 30px;
-  height: 400px;
+.sleep-summary-card:hover,
+.weekly-trend-card:hover,
+.brain-fact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Card Headers */
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 10px;
+}
+
+.header-icon {
+  font-size: 24px;
+  margin-right: 10px;
+  color: #6366F1;
+}
+
+.card-header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Sleep Metrics */
+.sleep-metrics {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 0;
+}
+
+.metric {
+  flex: 1;
+  min-width: 120px;
+  text-align: center;
+  padding: 15px 10px;
+  border-radius: 12px;
+  background-color: #f8f9fa;
+  transition: background-color 0.2s ease;
+}
+
+.metric:hover {
+  background-color: #f0f2ff;
+}
+
+.metric-icon {
+  font-size: 24px;
+  color: #6366F1;
+  margin-bottom: 8px;
+}
+
+.metric-emoji {
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+
+.metric-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.metric-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 2px;
+}
+
+.metric-sublabel {
+  font-size: 0.7rem;
+  color: #888;
+}
+
+.quality-metric {
+  background: linear-gradient(to bottom right, #f0f8ff, #e6f2ff);
+}
+
+/* Chart Container */
+.chart-container {
+  height: 250px;
+  margin: 20px 0;
   position: relative;
 }
 
-.average-stats {
+/* Chart Legend */
+.chart-legend {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin: 50px 0;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 10px 0;
 }
 
-.stat-bar {
-  background-color: grey;
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
+.legend-item {
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+  color: #666;
 }
 
+.legend-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+.legend-indicator.good {
+  background-color: #4BC0C0;
+}
+
+.legend-indicator.fair {
+  background-color: #FFCE56;
+}
+
+.legend-indicator.poor {
+  background-color: #FF6384;
+}
+
+/* Brain Fact Section */
+.brain-fact-content {
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  border-left: 4px solid #6366F1;
+}
+
+.brain-fact {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+  color: #333;
+  font-weight: 500;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Call to Action Link */
 .improve-link {
-  margin-top: 50px;
-  text-align: right;
+  text-align: center;
+  margin: 30px 0 50px;
 }
 
 .improve-link a {
-  color: orange;
+  display: inline-block;
+  background-color: #6366F1;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 30px;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.improve-link a:hover {
+  background-color: #4F46E5;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
 }
 
 /* Media Queries for Responsiveness */
 
 /* For tablets (768px and below) */
 @media (max-width: 768px) {
-  .today-box {
-    margin-top: 50px;
+  .data-page {
     padding: 15px;
-    font-size: 16px;
+    padding-top: 90px;
   }
-
-  .chart-container,
-  .line-chart-container {
-    height: 300px; /* Reduce height for smaller screens */
+  
+  .sleep-metrics {
+    flex-direction: column;
   }
-
-  .average-stats {
-    margin: 30px 0;
+  
+  .metric {
+    min-width: auto;
+    margin-bottom: 10px;
   }
-
-  .stat-bar {
-    font-size: 14px; /* Adjust font size */
-    padding: 8px;
+  
+  .chart-container {
+    height: 220px;
   }
-
-  .improve-link {
-    margin-top: 30px;
-    text-align: center; /* Center-align the text */
+  
+  .card-header h2 {
+    font-size: 1.2rem;
   }
-}
-
-/* For iPhone XS and small mobile devices (375px and below) */
-@media (max-width: 375px) {
-  .today-box {
-    margin-top: 30px;
-    padding: 10px;
-    font-size: 14px; /* Adjust font size for smaller screens */
-  }
-
-  .chart-container,
-  .line-chart-container {
-    height: 250px; /* Reduce chart height even more for small screens */
-  }
-
-  .average-stats {
-    margin: 20px 0; /* Reduce margin for smaller screens */
-  }
-
-  .stat-bar {
-    font-size: 12px; /* Smaller font for compact screens */
-    padding: 5px;
-  }
-
-  .improve-link {
-    margin-top: 50px !important;
-    text-align: center; /* Ensure it remains centered */
+  
+  .brain-fact {
+    font-size: 1rem;
   }
 }
 
-/* For very small mobile devices (480px and below) */
+/* For mobile devices (480px and below) */
 @media (max-width: 480px) {
-  .today-box {
-    margin-top: 30px;
+  .data-page {
     padding: 10px;
-    font-size: 14px;
+    padding-top: 80px;
   }
-
-  .chart-container,
-  .line-chart-container {
-    height: 200px; /* Further reduce chart height */
+  
+  .sleep-summary-card,
+  .weekly-trend-card,
+  .brain-fact-card {
+    padding: 15px;
+    margin-bottom: 15px;
   }
-
-  .average-stats {
-    margin: 20px 0; /* Reduce margin for smaller screens */
+  
+  .card-header {
+    margin-bottom: 12px;
   }
-
-  .stat-bar {
-    font-size: 12px;
-    padding: 5px;
+  
+  .header-icon {
+    font-size: 20px;
   }
+  
+  .card-header h2 {
+    font-size: 1.1rem;
+  }
+  
+  .metric-value {
+    font-size: 1.5rem;
+  }
+  
+  .metric-emoji {
+    font-size: 30px;
+  }
+  
+  .chart-container {
+    height: 200px;
+  }
+  
+  .brain-fact {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  
+  .improve-link a {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  
+  .chart-legend {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+}
 
-  .improve-link {
-    margin-top: 20px;
-    text-align: center; /* Ensure it remains centered */
+/* Permission Request Card */
+.permission-request-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  margin: 30px auto;
+  max-width: 400px;
+  text-align: center;
+}
+
+.permission-request-card h2 {
+  margin-top: 0;
+  color: #333;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.permission-request-card p {
+  color: #666;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+.permission-button {
+  background-color: #6366F1;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.permission-button:hover {
+  background-color: #4F46E5;
+  transform: translateY(-2px);
+}
+
+.permission-button:active {
+  transform: translateY(0);
+}
+
+/* Loading Spinner */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 20px;
+}
+
+.loading-container p {
+  margin-top: 20px;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+/* Header Component Styles */
+.page-header {
+  padding: 20px 0 10px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.page-header h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.data-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.data-content {
+  margin-top: 20px;
+}
+
+/* Permission Request Card */
+.permission-request-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 25px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.permission-request-card h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+.permission-request-card p {
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.permission-button {
+  background-color: #FF8C00;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.permission-button:hover {
+  background-color: #e67e00;
+}
+
+/* Loading Container */
+.loading-container {
+  text-align: center;
+  padding: 40px 0;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 4px solid #FF8C00;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Card Styles */
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header-icon {
+  margin-right: 10px;
+  color: #FF8C00;
+  font-size: 24px;
+}
+
+.card-header h2 {
+  margin: 0;
+  font-size: 22px;
+  color: #333;
+}
+
+/* Sleep Summary Card */
+.sleep-summary-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 25px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sleep-metrics {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.metric {
+  text-align: center;
+  padding: 15px;
+  flex: 1;
+  min-width: 120px;
+}
+
+.metric-icon {
+  font-size: 24px;
+  color: #FF8C00;
+  margin-bottom: 5px;
+}
+
+.metric-emoji {
+  font-size: 42px;
+  margin-bottom: 5px;
+}
+
+.metric-value {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+}
+
+.metric-label {
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 5px;
+}
+
+.metric-sublabel {
+  font-size: 12px;
+  color: #888;
+}
+
+/* Weekly Trend Card */
+.weekly-trend-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 25px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.chart-container {
+  height: 250px;
+  margin-bottom: 20px;
+}
+
+.chart-legend {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin: 0 10px;
+}
+
+.legend-indicator {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.legend-indicator.good {
+  background-color: #4BC0C0;
+}
+
+.legend-indicator.fair {
+  background-color: #FFCE56;
+}
+
+.legend-indicator.poor {
+  background-color: #FF6384;
+}
+
+/* Brain Fact Card */
+.brain-fact-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 25px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.brain-fact-content {
+  text-align: center;
+  padding: 10px;
+}
+
+.brain-fact {
+  font-size: 18px;
+  color: #333;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* Improve Link */
+.improve-link {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.improve-link a {
+  display: inline-block;
+  background-color: #FF8C00;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.improve-link a:hover {
+  background-color: #e67e00;
+}
+
+@media (max-width: 768px) {
+  .sleep-metrics {
+    flex-direction: column;
+  }
+  
+  .metric {
+    margin-bottom: 15px;
+  }
+  
+  .chart-container {
+    height: 200px;
+  }
+  
+  .brain-fact {
+    font-size: 16px;
   }
 }

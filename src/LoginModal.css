@@ -205,6 +205,72 @@
   text-decoration: underline;
 }
 
+/* Inline Privacy Policy Styles */
+.inline-privacy-policy {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.privacy-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.privacy-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 20px;
+}
+
+.privacy-back-button {
+  background: none;
+  border: none;
+  color: #FF8C00;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.privacy-back-button:hover {
+  background-color: #f8f8f8;
+  text-decoration: underline;
+}
+
+.privacy-content-inline {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+.privacy-content-inline h4 {
+  color: #FF8C00;
+  margin: 15px 0 8px 0;
+  font-size: 16px;
+}
+
+.privacy-content-inline p {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #444;
+}
+
+.privacy-content-inline .last-updated {
+  font-style: italic;
+  text-align: right;
+  margin-top: 20px;
+  color: #666;
+  font-size: 12px;
+}
+
 @media (max-width: 480px) {
   .login-modal {
     padding: 20px;
@@ -228,5 +294,17 @@
   
   .checkbox-label {
     font-size: 12px;
+  }
+  
+  .privacy-header h3 {
+    font-size: 18px;
+  }
+  
+  .privacy-content-inline h4 {
+    font-size: 15px;
+  }
+  
+  .privacy-content-inline p {
+    font-size: 13px;
   }
 } 
