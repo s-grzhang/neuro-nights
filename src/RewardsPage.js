@@ -150,7 +150,8 @@ const RewardsPage = ({ points, setPoints, userId }) => {
     setReadingBook({
       title: book.title,
       url: book.readUrl,
-      chapter: chapter.title
+      chapter: chapter.title,
+      useEmbeddedPdf: book.useEmbeddedPdf
     });
   }, []);
 
@@ -166,20 +167,28 @@ const RewardsPage = ({ points, setPoints, userId }) => {
       return;
     }
     
-    const [bookId, chapterNum] = chapter.id.split('-').slice(0, 3);
-    const previousChapterId = `${bookId}-${chapterNum}-${parseInt(chapterNum.slice(-1)) - 1}`;
-    
-    // Check if previous chapter is purchased (if not first chapter)
-    if (parseInt(chapterNum.slice(-1)) > 1 && !purchasedChapters[previousChapterId]) {
-      setError("You must unlock the previous chapter first!");
-      return;
-    }
+    // Extract chapter number from the ID (format: genre-bookNumber-chapterNumber)
+    const chapterParts = chapter.id.split('-');
+    const chapterNumber = parseInt(chapterParts[chapterParts.length - 1]);
     
     // Check if chapter is already purchased
     if (purchasedChapters[chapter.id]) {
       // Open the already purchased chapter
       startReading(book, chapter);
       return;
+    }
+    
+    // Chapter 1 should always be available to purchase
+    // For other chapters, previous chapter must be unlocked
+    if (chapterNumber > 1) {
+      // Construct previous chapter ID
+      const previousChapterNumber = chapterNumber - 1;
+      const previousChapterId = chapterParts.slice(0, -1).join('-') + '-' + previousChapterNumber;
+      
+      if (!purchasedChapters[previousChapterId]) {
+        setError("You must unlock the previous chapter first!");
+        return;
+      }
     }
     
     // Try to purchase the chapter
@@ -304,7 +313,18 @@ const RewardsPage = ({ points, setPoints, userId }) => {
             <ul className="chapter-list">
               {selectedBook.chapters.map((chapter, index) => {
                 const isPurchased = purchasedChapters[chapter.id];
-                const canPurchase = index === 0 || purchasedChapters[selectedBook.chapters[index - 1].id];
+                
+                // Extract chapter number directly from ID (last part after hyphen)
+                const chapterParts = chapter.id.split('-');
+                const chapterNumber = parseInt(chapterParts[chapterParts.length - 1]);
+                const isFirstChapter = chapterNumber === 1;
+                
+                // First chapter is always purchasable
+                // Other chapters require the previous chapter to be purchased
+                const previousChapterId = isFirstChapter ? null : 
+                  chapterParts.slice(0, -1).join('-') + '-' + (chapterNumber - 1);
+                
+                const canPurchase = isFirstChapter || purchasedChapters[previousChapterId];
                 
                 return (
                   <li 
@@ -358,6 +378,7 @@ const RewardsPage = ({ points, setPoints, userId }) => {
         bookUrl={readingBook.url}
         title={`${readingBook.title} - ${readingBook.chapter}`}
         onClose={closeReader}
+        useEmbeddedPdf={readingBook.useEmbeddedPdf}
       />
     );
   }, [readingBook, closeReader]);

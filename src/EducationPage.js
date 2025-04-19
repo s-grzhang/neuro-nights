@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import './EducationPage.css'; // Style the page
 
 import { 
-  FaBrain, 
-  FaClock, 
-  FaBed, 
+  FaPlay, 
   FaRunning, 
-  FaArrowLeft
+  FaArrowLeft,
+  FaYoutube
 } from 'react-icons/fa';
 import { GiBrain, GiSleepy } from 'react-icons/gi';
 import { MdOutlineNightlight } from 'react-icons/md';
@@ -33,8 +32,76 @@ const DreamDecoder = ({ onBackToEducation }) => (
   </div>
 );
 
+// Video player component
+const VideoPlayer = ({ videoId, title, description, isMain = false }) => {
+  const [playing, setPlaying] = useState(false);
+  
+  // Extract video ID from various YouTube URL formats
+  const getYoutubeVideoId = (url) => {
+    const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[7].length === 11) ? match[7] : url;
+  };
+  
+  const embedId = getYoutubeVideoId(videoId);
+  
+  return (
+    <div className={`video-card ${isMain ? 'main-video' : ''}`}>
+      {playing ? (
+        <div className="video-container">
+          <iframe
+            src={`https://www.youtube.com/embed/${embedId}`}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            title={title}
+          ></iframe>
+        </div>
+      ) : (
+        <div className="video-preview" onClick={() => setPlaying(true)}>
+          <img 
+            src={`https://img.youtube.com/vi/${embedId}/hqdefault.jpg`} 
+            alt={title} 
+            className="thumbnail"
+          />
+          <div className="play-overlay">
+            <FaPlay className="play-icon" />
+          </div>
+          <div className="video-info">
+            <h3>{title}</h3>
+            <p>{description}</p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
 const EducationPage = ({ userId, userData, updateUserData }) => {
   const [activeGame, setActiveGame] = useState(null);
+  const [activeVideo, setActiveVideo] = useState(null);
+  
+  // Sleep exercise videos data
+  const videos = [
+    {
+      id: 'video1',
+      videoId: 'https://www.youtube.com/watch?v=BSmYxnvUDHw&t=2702s',
+      title: 'Deep Sleep Relaxation Exercise',
+      description: 'A guided meditation to help you fall asleep faster and improve sleep quality.'
+    },
+    {
+      id: 'video2',
+      videoId: 'https://www.youtube.com/watch?v=FVlmTkgiMY8',
+      title: 'Evening Wind-Down Routine',
+      description: 'Gentle stretches and breathing exercises to prepare your body for sleep.'
+    },
+    {
+      id: 'video3',
+      videoId: 'https://www.youtube.com/watch?v=4wEDoKm40Yc&t=404s',
+      title: 'Sleep-Inducing Breathwork',
+      description: 'Specialized breathing techniques that trigger your body\'s relaxation response.'
+    }
+  ];
 
   const games = [
     {
@@ -79,6 +146,7 @@ const EducationPage = ({ userId, userData, updateUserData }) => {
   // Back to game selection menu
   const handleBackClick = () => {
     setActiveGame(null);
+    setActiveVideo(null);
   };
 
   return (
@@ -87,16 +155,30 @@ const EducationPage = ({ userId, userData, updateUserData }) => {
         {activeGame ? (
           <div className="active-game-container">
             <button className="back-button" onClick={handleBackClick}>
-              <FaArrowLeft /> Back to Games
+              <FaArrowLeft /> Back to Education
             </button>
             <div className="active-game">
               {games.find(game => game.id === activeGame)?.component}
             </div>
           </div>
+        ) : activeVideo ? (
+          <div className="active-video-container">
+            <button className="back-button" onClick={handleBackClick}>
+              <FaArrowLeft /> Back to Education
+            </button>
+            <div className="active-video">
+              <VideoPlayer 
+                videoId={videos.find(video => video.id === activeVideo)?.videoId || ''}
+                title={videos.find(video => video.id === activeVideo)?.title || ''}
+                description={videos.find(video => video.id === activeVideo)?.description || ''}
+                isMain={true}
+              />
+            </div>
+          </div>
         ) : (
           <>
             <h1 className="page-title">Learn About Sleep</h1>
-            <p className="page-description">Play educational games and learn about how sleep affects your brain!</p>
+            <p className="page-description">Play educational games and watch videos to learn about how sleep affects your brain!</p>
 
             <h2 className="section-title">Sleep Games</h2>
             <div className="game-cards">
@@ -117,23 +199,25 @@ const EducationPage = ({ userId, userData, updateUserData }) => {
               ))}
             </div>
 
-            <h2 className="section-title">Sleep Facts</h2>
-            <div className="fact-cards">
-              <div className="fact-card">
-                <h3><FaBrain /> Brain Activity</h3>
-                <p>During deep sleep, your brain processes memories and removes toxins that build up during the day.</p>
+            <h2 className="section-title">Sleep Exercise Videos</h2>
+            <div className="video-section">
+              <div className="main-video-container">
+                <VideoPlayer 
+                  videoId={videos[0].videoId}
+                  title={videos[0].title}
+                  description={videos[0].description}
+                  isMain={true}
+                />
               </div>
-              <div className="fact-card">
-                <h3><FaClock /> Circadian Rhythm</h3>
-                <p>Your body has an internal clock that regulates when you feel sleepy or alert based on daylight.</p>
-              </div>
-              <div className="fact-card">
-                <h3><MdOutlineNightlight /> Sleep Cycles</h3>
-                <p>Sleep is made up of 90-minute cycles of light, deep, and REM sleep that repeat through the night.</p>
-              </div>
-              <div className="fact-card">
-                <h3><FaBed /> Sleep for Learning</h3>
-                <p>A good night's sleep before and after learning something new helps your brain remember it better.</p>
+              <div className="small-videos-container">
+                {videos.slice(1).map(video => (
+                  <VideoPlayer 
+                    key={video.id}
+                    videoId={video.videoId}
+                    title={video.title}
+                    description={video.description}
+                  />
+                ))}
               </div>
             </div>
           </>

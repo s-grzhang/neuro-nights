@@ -61,6 +61,13 @@ export const formatBooksData = (books, genre) => {
     // Extract OLID from key
     const olid = book.key.split('/').pop();
     
+    // Check if this is "On the Beach" by Nevil Shute
+    const isOnTheBeach = book.title && book.title.toLowerCase().includes('on the beach') ||
+                         (book.author_name && book.author_name.some(name => name.toLowerCase().includes('shute')));
+    
+    // Special case for "On the Beach" - use local PDF instead of Open Library
+    const readUrl = isOnTheBeach ? '#' : `https://openlibrary.org${book.key}`;
+    
     return {
       id: `${genre}-${index + 1}`,
       olid,
@@ -73,7 +80,9 @@ export const formatBooksData = (books, genre) => {
         { id: `${genre}-${index + 1}-2`, title: 'Chapter 2', points: 270 + Math.floor(Math.random() * 50) },
         { id: `${genre}-${index + 1}-3`, title: 'Chapter 3', points: 390 + Math.floor(Math.random() * 50) }
       ],
-      readUrl: `https://openlibrary.org${book.key}`
+      readUrl: readUrl,
+      // Flag to indicate embedded PDF should be used
+      useEmbeddedPdf: isOnTheBeach
     };
   });
 };

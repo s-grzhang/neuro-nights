@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import './BookReader.css';
 import { FaTimes, FaExpand, FaCompress, FaBookmark, FaVolumeUp, FaFont } from 'react-icons/fa';
 
-const BookReader = ({ bookUrl, title, onClose }) => {
+const BookReader = ({ bookUrl, title, onClose, useEmbeddedPdf }) => {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [fontSize, setFontSize] = useState(16); // Default font size
+  
+  // PDF file path for embedded viewing
+  const pdfUrl = '/pdfs/On the Beach Compressed.pdf';
   
   useEffect(() => {
     // Handle fullscreen changes
@@ -45,7 +48,6 @@ const BookReader = ({ bookUrl, title, onClose }) => {
     });
   };
   
-  // For BookReader, we're using Open Library's reading system via iframe
   return (
     <div 
       id="book-reader-container" 
@@ -83,17 +85,37 @@ const BookReader = ({ bookUrl, title, onClose }) => {
       )}
       
       <div className="reader-content" style={{ fontSize: `${fontSize}px` }}>
-        <iframe 
-          src={bookUrl}
-          title={`${title} reader`}
-          frameBorder="0"
-          allowFullScreen
-          onLoad={handleIframeLoad}
-          style={{ display: isLoading ? 'none' : 'block' }}
-        />
+        {useEmbeddedPdf ? (
+          // Use embedded PDF viewer for books that have local PDFs
+          <object
+            data={pdfUrl}
+            type="application/pdf"
+            width="100%"
+            height="100%"
+            onLoad={handleIframeLoad}
+            style={{ display: isLoading ? 'none' : 'block' }}
+          >
+            <p>Your browser does not support embedded PDFs. <a href={pdfUrl} target="_blank" rel="noopener noreferrer">Click here to download the PDF.</a></p>
+          </object>
+        ) : (
+          // Use iframe for other books (Open Library)
+          <iframe 
+            src={bookUrl}
+            title={`${title} reader`}
+            frameBorder="0"
+            allowFullScreen
+            onLoad={handleIframeLoad}
+            style={{ display: isLoading ? 'none' : 'block' }}
+          />
+        )}
       </div>
     </div>
   );
+};
+
+// Default props
+BookReader.defaultProps = {
+  useEmbeddedPdf: false
 };
 
 export default BookReader; 
