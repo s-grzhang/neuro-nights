@@ -7,8 +7,11 @@ import recommendedGoalsImage from "./Recommended Goals.png";
 import GoalCard from './GoalCard'; // Import the GoalCard component
 import { db } from './firebase'; // Import db (Firestore)
 import { doc, deleteDoc, collection, addDoc } from "firebase/firestore"; // Import Firestore methods
+import SleepGoalTracker from './utils/SleepGoalTracker'; // Import our new SleepGoalTracker
+import { useAuth } from './AuthContext'; // Import useAuth to get user ID
 
-const GoalsPage = ({ onEarnPoints }) => { // Accept onEarnPoints as a prop
+const GoalsPage = ({ onEarnPoints }) => {
+  const { userId } = useAuth(); // Get userId from AuthContext
   const [menuOpen, setMenuOpen] = useState(false);
   const [goals, setGoals] = useState([
     { id: 1, text: 'I will sleep from 11 PM to 8 AM.', progress: 50 },
@@ -32,6 +35,50 @@ const GoalsPage = ({ onEarnPoints }) => { // Accept onEarnPoints as a prop
     setMenuOpen(!menuOpen);
   };
 
+  // Fetch goals and update progress when component is mounted
+  useEffect(() => {
+    const fetchGoalsAndUpdateProgress = async () => {
+      try {
+        // First fetch goals from Firestore to initialize state
+        const querySnapshot = await getDocs(collection(db, "goals"));
+        const initialGoals = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setGoals(initialGoals);
+        
+        // Then update progress based on sleep data
+        if (userId) {
+          const updatedGoals = await SleepGoalTracker.updateGoalProgress(userId);
+          if (updatedGoals && updatedGoals.length > 0) {
+            setGoals(updatedGoals);
+          }
+        }
+      } catch (error) {
+        console.error("Error getting documents or updating progress:", error);
+      }
+    };
+
+    fetchGoalsAndUpdateProgress();
+    
+    // Set up interval to update progress every hour
+    const intervalId = setInterval(() => {
+      if (userId) {
+        SleepGoalTracker.updateGoalProgress(userId)
+          .then(updatedGoals => {
+            if (updatedGoals && updatedGoals.length > 0) {
+              setGoals(updatedGoals);
+            }
+          })
+          .catch(error => {
+            console.error("Error updating goal progress:", error);
+          });
+      }
+    }, 3600000); // 1 hour in milliseconds
+    
+    // Clean up interval on unmount
+    return () => clearInterval(intervalId);
+  }, [userId]);
   
 const handleSetGoal = async () => {
   let goalText = '';
@@ -59,10 +106,24 @@ const handleSetGoal = async () => {
         const docRef = await addDoc(collection(db, "goals"), {
           text: goalText,
           progress: 0,
-          points: 0,  // You can customize the fields as needed
+          points: 0,  // Initial points
+          createdAt: new Date().toISOString(),
         });
         console.log("Goal added with ID: ", docRef.id);
-        setGoals([...goals, { id: docRef.id, text: goalText, progress: 0 }]);
+        setGoals([...goals, { id: docRef.id, text: goalText, progress: 0, points: 0 }]);
+        
+        // Update progress immediately after adding a goal
+        if (userId) {
+          SleepGoalTracker.updateGoalProgress(userId)
+            .then(updatedGoals => {
+              if (updatedGoals && updatedGoals.length > 0) {
+                setGoals(updatedGoals);
+              }
+            })
+            .catch(error => {
+              console.error("Error updating goal progress:", error);
+            });
+        }
       } catch (e) {
         console.error("Error adding goal: ", e);
       }
@@ -76,25 +137,6 @@ const handleSetGoal = async () => {
     }); // Reset after adding/updating the goal
   }
 };
-
-// Fetch goals when component is mounted
-useEffect(() => {
-  const fetchGoals = async () => {
-    try {
-      const querySnapshot = await getDocs(collection(db, "goals"));
-      const goalsList = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setGoals(goalsList);
-    } catch (e) {
-      console.error("Error getting documents: ", e);
-    }
-  };
-
-  fetchGoals();
-}, []);
-
 
   // Function to delete a goal
   const handleDeleteGoal = async (id) => {
@@ -114,9 +156,54 @@ useEffect(() => {
       hours: goal.text.match(/\d+/) ? parseInt(goal.text.match(/\d+/)[0]) : 0,
       days: goal.text.includes('days') ? parseInt(goal.text.match(/\d+/)[1]) : 0,
       timeStart: goal.text.includes('from') ? goal.text.split('from ')[1].split(' to ')[0] : '',
-      timeEnd: goal.text.includes('to') ? goal.text.split('to ')[1] : '',
+      timeEnd: goal.text.includes('to') ? goal.text.split('to ')[1].replace('.', '') : '',
     });
     setEditingGoal(goal);
+  };
+
+  // Function to set a recommended goal
+  const handleSetRecommendedGoal = async (goalType) => {
+    let goalText = '';
+    
+    switch (goalType) {
+      case 'duration':
+        goalText = 'I will sleep for 8 hours.';
+        break;
+      case 'consistency':
+        goalText = 'I will avoid a variance of more than 15 minutes every night.';
+        break;
+      case 'bedtime':
+        goalText = 'I will sleep from 11:00 PM to 7:00 AM.';
+        break;
+      default:
+        return;
+    }
+    
+    try {
+      const docRef = await addDoc(collection(db, "goals"), {
+        text: goalText,
+        progress: 0,
+        points: 0,
+        createdAt: new Date().toISOString(),
+      });
+      console.log("Recommended goal added with ID: ", docRef.id);
+      setGoals([...goals, { id: docRef.id, text: goalText, progress: 0, points: 0 }]);
+      
+      // Update progress immediately after adding a recommended goal
+      if (userId) {
+        SleepGoalTracker.updateGoalProgress(userId)
+          .then(updatedGoals => {
+            if (updatedGoals && updatedGoals.length > 0) {
+              setGoals(updatedGoals);
+            }
+          })
+          .catch(error => {
+            console.error("Error updating goal progress:", error);
+          });
+      }
+    } catch (e) {
+      console.error("Error adding recommended goal: ", e);
+    }
   };
 
   return (
@@ -128,17 +215,17 @@ useEffect(() => {
           <div className="goal-card">
             <h3>Duration</h3>
             <p>Sleep for at least 8 hours</p>
-            <button className="set-button">SET</button>
+            <button className="set-button" onClick={() => handleSetRecommendedGoal('duration')}>SET</button>
           </div>
           <div className="goal-card">
             <h3>Consistency</h3>
             <p>Meet your goals every day</p>
-            <button className="set-button">SET</button>
+            <button className="set-button" onClick={() => handleSetRecommendedGoal('consistency')}>SET</button>
           </div>
           <div className="goal-card">
             <h3>Bedtime</h3>
             <p>Sleep by 11 PM & wake up by 9 AM</p>
-            <button className="set-button">SET</button>
+            <button className="set-button" onClick={() => handleSetRecommendedGoal('bedtime')}>SET</button>
           </div>
         </div>
       </div>

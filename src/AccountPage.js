@@ -4,7 +4,7 @@ import { useAuth } from "./AuthContext";
 
 const AccountPage = ({ userData, updateUserData }) => {
   const { logout } = useAuth();
-  
+
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("female");
@@ -72,20 +72,20 @@ const AccountPage = ({ userData, updateUserData }) => {
       {/* Profile Summary */}
       <div className="profile-summary">
         <div className="profile-icon">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <circle cx="12" cy="7" r="4" />
-            <path d="M5.5 17c1.5-2 4-3 6.5-3s5 1 6.5 3" />
-          </svg>
-        </div>
-        
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <circle cx="12" cy="7" r="4" />
+    <path d="M5.5 17c1.5-2 4-3 6.5-3s5 1 6.5 3" />
+  </svg>
+</div>
+
         <div className="profile-details">
           <h2>{userData?.displayName || "User"}</h2>
           <p>{userData?.email || "Guest User"}</p>
@@ -116,7 +116,7 @@ const AccountPage = ({ userData, updateUserData }) => {
         </div>
         
         <div className="form-group">
-          <label htmlFor="age">Age</label>
+      <label htmlFor="age">Age</label>
           <input 
             type="number" 
             id="age" 
@@ -129,7 +129,7 @@ const AccountPage = ({ userData, updateUserData }) => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="gender">Gender</label>
+      <label htmlFor="gender">Gender</label>
           <select 
             id="gender" 
             className="dropdown"
@@ -137,34 +137,34 @@ const AccountPage = ({ userData, updateUserData }) => {
             onChange={(e) => setGender(e.target.value)}
             disabled={!isEditing}
           >
-            <option value="female">Female</option>
-            <option value="male">Male</option>
-            <option value="nonbinary">Nonbinary</option>
+        <option value="female">Female</option>
+        <option value="male">Male</option>
+        <option value="nonbinary">Nonbinary</option>
             <option value="other">Other</option>
             <option value="prefer-not-to-say">Prefer not to say</option>
-          </select>
+      </select>
         </div>
 
-        {/* Privacy Controls */}
+      {/* Privacy Controls */}
         <div className="section">
-          <h2>Privacy Controls</h2>
-          <div className="privacy-setting">
+      <h2>Privacy Controls</h2>
+      <div className="privacy-setting">
             <span>Enhanced Privacy</span>
-            <label className="switch">
+        <label className="switch">
               <input 
                 type="checkbox" 
                 checked={privacyOn} 
                 onChange={togglePrivacy}
                 disabled={!isEditing}
               />
-              <span className="slider"></span>
-            </label>
-          </div>
+          <span className="slider"></span>
+        </label>
+      </div>
           <p className="privacy-description">
             When enabled, your sleep data will be anonymized for research purposes.
           </p>
         </div>
-        
+
         {/* Action Buttons */}
         <div className="buttons-container">
           {isEditing ? (

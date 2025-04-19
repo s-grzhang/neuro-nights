@@ -1,0 +1,170 @@
+.brain-builder-game {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.memory-board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.memory-card {
+  width: 100%;
+  aspect-ratio: 3/4;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.memory-card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.card-front {
+  background: linear-gradient(135deg, #a064e0, #6c3cbe);
+  color: white;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.card-back {
+  background: white;
+  transform: rotateY(180deg);
+  font-weight: 500;
+  font-size: 1rem;
+  text-align: center;
+  color: #333;
+}
+
+.brain-part .card-back {
+  background-color: #e3f2fd;
+  border: 2px solid #1976d2;
+  color: #0d47a1;
+}
+
+.brain-function .card-back {
+  background-color: #f3e5f5;
+  border: 2px solid #9c27b0;
+  color: #4a148c;
+}
+
+.memory-card.matched .card-inner {
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+.memory-card.matched .card-back {
+  background-color: #e8f5e9;
+  border: 2px solid #4caf50;
+}
+
+.game-over {
+  text-align: center;
+  padding: 20px;
+  background-color: #f0f8ff;
+  border-radius: 10px;
+  margin-top: 20px;
+  animation: fadeIn 0.5s ease;
+}
+
+.brain-fact {
+  background-color: #e8f5e9;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 20px 0;
+  text-align: left;
+  border-left: 4px solid #4caf50;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .memory-board {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .memory-board {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  .card-front {
+    font-size: 2rem;
+  }
+  
+  .card-back {
+    font-size: 0.85rem;
+  }
+}
+
+/* Back button styles */
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #5e35b1;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-bottom: 15px;
+  align-self: flex-start;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.back-button:hover {
+  background-color: #4527a0;
+  transform: translateX(-5px);
+}
+
+.game-instructions .back-button,
+.game-over .back-button {
+  position: relative;
+  z-index: 100;
+}
+
+.game-header .back-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+/* Game buttons group */
+.game-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 15px 0;
+} 

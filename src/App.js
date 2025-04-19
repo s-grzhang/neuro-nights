@@ -14,6 +14,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "./firebase"; // Firestore config
 import LoginModal from "./LoginModal";
 import { AuthProvider, useAuth } from "./AuthContext";
+import CircadianRhythmRacer from "./games/CircadianRhythmRacer/CircadianRhythmRacer";
 
 const App = () => {
   return (
@@ -150,7 +151,11 @@ const AppContent = () => {
       <Routes>
         <Route path="education" element={
           isAuthenticated ? 
-            <EducationPage /> : 
+            <EducationPage 
+              userId={userId} 
+              userData={userData} 
+              updateUserData={updateUserData}
+            /> : 
             <Navigate to="/" replace state={{ openLoginModal: true }} />
         } />
         <Route path="data" element={

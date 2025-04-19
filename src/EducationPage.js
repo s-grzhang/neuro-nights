@@ -1,93 +1,145 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './EducationPage.css'; // Style the page
 
-import { FaBrain, FaPuzzlePiece, FaGamepad, FaQuestionCircle } from 'react-icons/fa';
+import { 
+  FaBrain, 
+  FaClock, 
+  FaBed, 
+  FaRunning, 
+  FaArrowLeft
+} from 'react-icons/fa';
+import { GiBrain, GiSleepy } from 'react-icons/gi';
+import { MdOutlineNightlight } from 'react-icons/md';
+import { BsFillMoonStarsFill } from 'react-icons/bs';
 
-const EducationPage = () => {
+// Game components
+import BrainBuilder from './games/BrainBuilder/BrainBuilder';
+import CircadianRhythmRacer from './games/CircadianRhythmRacer/CircadianRhythmRacer';
+
+// Placeholder components for games that haven't been implemented yet
+const SleepyBrainSimulator = ({ onBackToEducation }) => (
+  <div className="placeholder-game">
+    <h2>Sleepy Brain Simulator</h2>
+    <p>This game is coming soon! Check back later.</p>
+    <button onClick={onBackToEducation}>Back to Education</button>
+  </div>
+);
+
+const DreamDecoder = ({ onBackToEducation }) => (
+  <div className="placeholder-game">
+    <h2>Dream Decoder</h2>
+    <p>This game is coming soon! Check back later.</p>
+    <button onClick={onBackToEducation}>Back to Education</button>
+  </div>
+);
+
+const EducationPage = ({ userId, userData, updateUserData }) => {
+  const [activeGame, setActiveGame] = useState(null);
+
+  const games = [
+    {
+      id: 'brain-builder',
+      title: 'Brain Builder',
+      icon: <GiBrain className="card-icon" />,
+      description: 'Match pairs of brain parts with what they do during sleep! Learn how sleep helps with memory, learning, and focus.',
+      points: 150,
+      component: <BrainBuilder onBackToEducation={() => setActiveGame(null)} />
+    },
+    {
+      id: 'circadian-rhythm-racer',
+      title: 'Circadian Rhythm Racer',
+      icon: <FaRunning className="card-icon" />,
+      description: 'Help a little "Sleepy Cell" avoid blue light and catch melatonin drops in this side-scrolling adventure!',
+      points: 100,
+      component: <CircadianRhythmRacer 
+        userId={userId} 
+        userData={userData} 
+        updateUserData={updateUserData} 
+        onBackToEducation={() => setActiveGame(null)}
+      />
+    },
+    {
+      id: 'sleepy-brain-simulator',
+      title: 'Sleepy Brain Simulator',
+      icon: <BsFillMoonStarsFill className="card-icon" />,
+      description: 'Experience how a tired brain functions differently! Tap fast to help a sleepy brain do simple tasks.',
+      points: 100,
+      component: <SleepyBrainSimulator onBackToEducation={() => setActiveGame(null)} />
+    },
+    {
+      id: 'dream-decoder',
+      title: 'Dream Decoder',
+      icon: <GiSleepy className="card-icon" />,
+      description: 'Decode dream patterns and learn about the science of dreams and what they mean for your brain.',
+      points: 200,
+      component: <DreamDecoder onBackToEducation={() => setActiveGame(null)} />
+    }
+  ];
+
+  // Back to game selection menu
+  const handleBackClick = () => {
+    setActiveGame(null);
+  };
+
   return (
-    <div className="education-page">
-      {/* Quizzes & Games Section */}
-      <h1>Quizzes & Games</h1>
-      <div className="card-grid">
-        <div className="card">
-          <FaBrain className="card-icon" />
-          <h2 className="card-title">Brain Teasers</h2>
-          <p className="card-description">Understand the relationship between mental health disorders & sleep.</p>
-          <button className="card-button">100 pts.</button>
-        </div>
-        <div className="card">
-          <FaPuzzlePiece className="card-icon" />
-          <h2 className="card-title">Memory Games</h2>
-          <p className="card-description">Learn the short- and long-term effects of insufficient sleep on memory with some fun brain teasers.</p>
-          <button className="card-button">150 pts.</button>
-        </div>
-        <div className="card">
-          <FaGamepad className="card-icon" />
-          <h2 className="card-title">Fun Challenges</h2>
-          <p className="card-description">Explore the changes in brain structure and function during the teenage years.</p>
-          <button className="card-button">150 pts.</button>
-        </div>
-        <div className="card">
-          <FaQuestionCircle className="card-icon" />
-          <h2 className="card-title">Trivia Quiz</h2>
-          <p className="card-description">Test your knowledge on the role of sleep in the growth & maintenance of new neurons.</p>
-          <button className="card-button">100 pts.</button>
-        </div>
-      </div>
+    <main className="education-page">
+      <div className="education-content">
+        {activeGame ? (
+          <div className="active-game-container">
+            <button className="back-button" onClick={handleBackClick}>
+              <FaArrowLeft /> Back to Games
+            </button>
+            <div className="active-game">
+              {games.find(game => game.id === activeGame)?.component}
+            </div>
+          </div>
+        ) : (
+          <>
+            <h1 className="page-title">Learn About Sleep</h1>
+            <p className="page-description">Play educational games and learn about how sleep affects your brain!</p>
 
-      {/* Sleep Exercises Section */}
-      <h1>Sleep Exercises</h1>
-      <div className="video-section">
-        <div className="large-video">
-          <iframe 
-            width="300" 
-            height="168.75" 
-            src="https://www.youtube.com/embed/4wEDoKm40Yc" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen
-          ></iframe>
-        </div>
-        <div className="small-video-row">
-          <iframe 
-            className="small-video" 
-            width="100" 
-            height="56.25" 
-            src="https://www.youtube.com/embed/vPUQ265HU2Q" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen
-          ></iframe>
-          <iframe 
-            className="small-video" 
-            width="100" 
-            height="56.25" 
-            src="https://www.youtube.com/embed/ft-vhYwHzxw" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen
-          ></iframe>
-          <iframe 
-            className="small-video" 
-            width="100" 
-            height="56.25" 
-            src="https://www.youtube.com/embed/z867dlHCq9c" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen
-          ></iframe>
-        </div>
-      </div>
+            <h2 className="section-title">Sleep Games</h2>
+            <div className="game-cards">
+              {games.map(game => (
+                <div key={game.id} className="game-card" onClick={() => setActiveGame(game.id)}>
+                  <div className="card-icon-container">
+                    {game.icon}
+                  </div>
+                  <div className="card-content">
+                    <h3>{game.title}</h3>
+                    <p>{game.description}</p>
+                    <div className="card-points">
+                      <span>Earn up to {game.points} points!</span>
+                    </div>
+                  </div>
+                  <button className="play-button">Play Now</button>
+                </div>
+              ))}
+            </div>
 
-      {/* Share Neuronights Section */}
-      <h1>Share Neuronights</h1>
-      <div className="social-media-icons">
-        <i className="fab fa-whatsapp"></i>
-        <i className="fab fa-facebook"></i>
-        <i className="fab fa-twitter"></i>
-        <i className="fab fa-instagram"></i>
+            <h2 className="section-title">Sleep Facts</h2>
+            <div className="fact-cards">
+              <div className="fact-card">
+                <h3><FaBrain /> Brain Activity</h3>
+                <p>During deep sleep, your brain processes memories and removes toxins that build up during the day.</p>
+              </div>
+              <div className="fact-card">
+                <h3><FaClock /> Circadian Rhythm</h3>
+                <p>Your body has an internal clock that regulates when you feel sleepy or alert based on daylight.</p>
+              </div>
+              <div className="fact-card">
+                <h3><MdOutlineNightlight /> Sleep Cycles</h3>
+                <p>Sleep is made up of 90-minute cycles of light, deep, and REM sleep that repeat through the night.</p>
+              </div>
+              <div className="fact-card">
+                <h3><FaBed /> Sleep for Learning</h3>
+                <p>A good night's sleep before and after learning something new helps your brain remember it better.</p>
+              </div>
+            </div>
+          </>
+        )}
       </div>
-    </div>
+    </main>
   );
 };
 
