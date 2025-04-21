@@ -15,6 +15,7 @@ import { db } from "./firebase"; // Firestore config
 import LoginModal from "./LoginModal";
 import { AuthProvider, useAuth } from "./AuthContext";
 import CircadianRhythmRacer from "./games/CircadianRhythmRacer/CircadianRhythmRacer";
+import BrainBuilder from "./games/BrainBuilder/BrainBuilder";
 
 const App = () => {
   return (
@@ -95,12 +96,11 @@ const AppContent = () => {
   }, []);
 
   const menuItems = [
-    { id: 'home', title: 'Home', path: '/' },
-    { id: 'data', title: 'Sleep Data', path: '/data' },
-    { id: 'rewards', title: 'Rewards', path: '/rewards' },
-    { id: 'goals', title: 'Goals', path: '/goals' },
-    { id: 'education', title: 'Education', path: '/education' },
-    { id: 'subscription', title: 'Subscription', path: '/subscription' },
+    { name: 'Home', icon: 'home', path: '/' },
+    { name: 'Education', icon: 'school', path: '/education' },
+    { name: 'Data', icon: 'assessment', path: '/data' },
+    { name: 'Goals', icon: 'flag', path: '/goals' },
+    { name: 'Rewards', icon: 'card_giftcard', path: '/rewards' },
   ];
 
   const appInfo = {
@@ -137,7 +137,7 @@ const AppContent = () => {
               openLoginModal={openLoginModal} 
             />
             {menuItems.map((item) => (
-              <li key={item.id}><Link to={item.path} onClick={() => setMenuOpen(false)}>{item.title}</Link></li>
+              <li key={item.name}><Link to={item.path} onClick={() => setMenuOpen(false)}>{item.name}</Link></li>
             ))}
             {isAuthenticated && (
               <li className="logout-item" onClick={() => { logout(); setMenuOpen(false); }}>
@@ -149,56 +149,28 @@ const AppContent = () => {
       </div>
 
       <Routes>
-        <Route path="education" element={
-          isAuthenticated ? 
-            <EducationPage 
-              userId={userId} 
-              userData={userData} 
-              updateUserData={updateUserData}
-            /> : 
-            <Navigate to="/" replace state={{ openLoginModal: true }} />
+        <Route path="/" element={<HomePage points={points} goals={goals} handleEarnPoints={handleEarnPoints} isAuthenticated={isAuthenticated} openLoginModal={openLoginModal} />} />
+        <Route path="/education" element={<EducationPage />} />
+        <Route path="/data" element={
+          isAuthenticated ? <DataPage /> : <Navigate to="/" state={{ openLoginModal: true }} />
         } />
-        <Route path="data" element={
-          isAuthenticated ? 
-            <DataPage /> : 
-            <Navigate to="/" replace state={{ openLoginModal: true }} />
+        <Route path="/goals" element={
+          isAuthenticated ? <GoalsPage onEarnPoints={handleEarnPoints} goals={goals} setGoals={setGoals} /> : <Navigate to="/" state={{ openLoginModal: true }} />
         } />
-        <Route path="account" element={
-          isAuthenticated ? 
-            <AccountPage userData={userData} updateUserData={updateUserData} /> : 
-            <Navigate to="/" replace state={{ openLoginModal: true }} />
+        <Route path="/rewards" element={
+          isAuthenticated ? <RewardsPage points={points} setPoints={(newPoints) => updateUserData({ points: newPoints })} userId={userId} /> : <Navigate to="/" state={{ openLoginModal: true }} />
         } />
-        <Route path="subscription" element={
-          isAuthenticated ? 
-            <SubscriptionPage /> : 
-            <Navigate to="/" replace state={{ openLoginModal: true }} />
+        <Route path="/account" element={
+          isAuthenticated ? <AccountPage userData={userData} updateUserData={updateUserData} /> : <Navigate to="/" state={{ openLoginModal: true }} />
         } />
-        <Route path="rewards" element={
-          isAuthenticated ? 
-            <RewardsPage 
-              points={points} 
-              setPoints={(newPoints) => updateUserData({ points: newPoints })} 
-              userId={userId} 
-            /> : 
-            <Navigate to="/" replace state={{ openLoginModal: true }} />
+        <Route path="/subscription" element={
+          isAuthenticated ? <SubscriptionPage /> : <Navigate to="/" state={{ openLoginModal: true }} />
         } />
-        <Route path="/" element={
-          <HomePage 
-            points={points} 
-            goals={goals} 
-            handleEarnPoints={handleEarnPoints}
-            isAuthenticated={isAuthenticated}
-            openLoginModal={openLoginModal}
-          />
+        <Route path="/games/brain-builder" element={
+          isAuthenticated ? <BrainBuilder userId={userId} userData={userData} updateUserData={updateUserData} /> : <Navigate to="/" state={{ openLoginModal: true }} />
         } />
-        <Route path="goals" element={
-          isAuthenticated ? 
-            <GoalsPage 
-              onEarnPoints={handleEarnPoints} 
-              goals={goals} 
-              setGoals={setGoals} 
-            /> : 
-            <Navigate to="/" replace state={{ openLoginModal: true }} />
+        <Route path="/games/circadian-rhythm-racer" element={
+          isAuthenticated ? <CircadianRhythmRacer userId={userId} userData={userData} updateUserData={updateUserData} /> : <Navigate to="/" state={{ openLoginModal: true }} />
         } />
       </Routes>
 

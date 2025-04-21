@@ -6,9 +6,41 @@
 import { db } from '../firebase';
 import { doc, updateDoc, getDoc, collection, getDocs } from 'firebase/firestore';
 import PhonePickupTracker from './PhonePickupTracker';
+import SleepDataManager from './SleepDataManager';
 
 const REQUIRED_DAYS = 21; // Days needed to complete a goal (form a habit)
 const GOAL_REWARD_POINTS = 400; // Points earned for completing a goal
+
+/**
+ * Get sleep history data for a number of days
+ * @param {string} userId - User ID to fetch data for
+ * @param {number} days - Number of days to fetch
+ * @returns {Promise<Array>} - Array of daily sleep data
+ */
+export const getSleepHistory = async (userId, days = 30) => {
+  try {
+    // Try to get sleep data from Firestore first
+    if (userId) {
+      try {
+        const sleepRecords = await SleepDataManager.getSleepData(userId, days);
+        if (sleepRecords && sleepRecords.length > 0) {
+          return sleepRecords;
+        }
+      } catch (error) {
+        console.warn('Could not retrieve sleep records from Firestore, falling back to simulator:', error);
+      }
+    }
+    
+    // Fall back to the simulator if no Firestore data or error
+    const sleepData = await PhonePickupTracker.getNightPickups(days);
+    
+    // Ensure we have an array of data
+    return Array.isArray(sleepData) ? sleepData : [sleepData];
+  } catch (error) {
+    console.error('Error getting sleep history:', error);
+    return [];
+  }
+};
 
 /**
  * Get the progress percentages for all sleep goals based on sleep data
@@ -24,12 +56,25 @@ export const updateGoalProgress = async (userId) => {
       ...doc.data(),
     }));
 
-    // Get sleep data for the last 30 days
-    const sleepData = await PhonePickupTracker.getNightPickups(30);
-    const sleepHistory = Array.isArray(sleepData) ? sleepData : [sleepData];
+    // Get sleep data for the last 30 days - use SleepDataManager first
+    const sleepHistory = await getSleepHistory(userId, 30);
 
     // Get user data to check if progress has been tracked before
     const userDoc = await getDoc(doc(db, 'users', userId));
+    if (!userDoc.exists()) {
+      // Create user document if it doesn't exist
+      await updateDoc(doc(db, 'users', userId), {
+        goalProgress: {},
+        createdAt: new Date().toISOString()
+      });
+      
+      // Generate some simulated sleep data for testing
+      await SleepDataManager.generateSimulatedSleepData(userId, 30);
+      
+      // Retry with the simulated data
+      return updateGoalProgress(userId);
+    }
+    
     const userData = userDoc.data();
     
     // Initialize goalProgress if it doesn't exist
@@ -112,6 +157,7 @@ export const updateGoalProgress = async (userId) => {
     // Update user's goal progress tracking data
     await updateDoc(doc(db, 'users', userId), {
       goalProgress,
+      lastGoalUpdateAt: new Date().toISOString()
     });
     
     return updatedGoals;
@@ -127,6 +173,8 @@ export const updateGoalProgress = async (userId) => {
  * @returns {string} - Goal type: 'duration', 'consistency', or 'bedtime'
  */
 const getGoalType = (goalText) => {
+  if (!goalText) return 'unknown';
+  
   if (goalText.includes('hours')) {
     return 'duration';
   } else if (goalText.includes('variance')) {
@@ -144,6 +192,8 @@ const getGoalType = (goalText) => {
  * @returns {Object} - Target values object
  */
 const extractTargetValues = (goalText, goalType) => {
+  if (!goalText) return {};
+  
   switch (goalType) {
     case 'duration':
       const hoursMatch = goalText.match(/sleep for (\d+) hours/);
@@ -179,6 +229,8 @@ const extractTargetValues = (goalText, goalType) => {
  * @returns {boolean} - Whether the goal was achieved
  */
 const checkDailyGoalAchievement = (sleepData, goalType, targetValues) => {
+  if (!sleepData || !goalType || !targetValues) return false;
+  
   switch (goalType) {
     case 'duration':
       return sleepData.sleepDuration >= targetValues.targetHours;
@@ -200,4 +252,5 @@ const checkDailyGoalAchievement = (sleepData, goalType, targetValues) => {
 
 export default {
   updateGoalProgress,
+  getSleepHistory,
 }; 
