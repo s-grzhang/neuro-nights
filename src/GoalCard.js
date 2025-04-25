@@ -1,41 +1,21 @@
 import React, { useState } from 'react';
-import { FaTrashAlt, FaPencilAlt, FaCheck, FaLock } from 'react-icons/fa';
+import { FaTrashAlt, FaPencilAlt, FaCheck, FaStar } from 'react-icons/fa';
 import './GoalsPage.css';
 
-const GoalCard = ({ goal, onDelete, onEarnPoints, onEdit }) => {
-  const [animationActive, setAnimationActive] = useState(false);
+const GoalCard = ({ goal, onDelete, onEdit, onCompleted }) => {
   const [claimed, setClaimed] = useState(false);
 
-  const handleEarnPoints = () => {
-    setAnimationActive(true);
+  const handleClaimPoints = () => {
     setClaimed(true);
     
     setTimeout(() => {
-      // Call the parent's onEarnPoints function with the goal's points
-      onEarnPoints(goal.points || 400); // Default to 400 if no points specified
-      
-      // Delete the goal after a slight delay (for animation to complete)
-      setTimeout(() => {
-        onDelete(goal.id);
-        setAnimationActive(false);
-      }, 500);
-    }, 1000);
+      // Call the parent's onCompleted function
+      if (onCompleted) {
+        onCompleted(goal);
+      }
+    }, 500);
   };
 
-  // Get the text for the progress bar label
-  const getProgressText = () => {
-    if (goal.progress >= 100) {
-      return 'Goal Complete!';
-    } else if (goal.progress === 0) {
-      return 'Just started';
-    } else {
-      return `${goal.progress}% complete`;
-    }
-  };
-
-  // Determine if the goal is in progress (not 0% and not 100%)
-  const isInProgress = goal.progress > 0 && goal.progress < 100;
-  
   // Determine progress bar color
   const getProgressColor = () => {
     if (goal.progress >= 100) {
@@ -50,7 +30,7 @@ const GoalCard = ({ goal, onDelete, onEarnPoints, onEdit }) => {
   };
 
   return (
-    <div className={`goal-item ${animationActive ? 'animate' : ''} ${goal.progress >= 100 ? 'completed' : ''}`}>
+    <div className="goal-item">
       <div className="goal-header">
         <p className="goal-text">{goal.text}</p>
         <div className="goal-actions">
@@ -71,33 +51,34 @@ const GoalCard = ({ goal, onDelete, onEarnPoints, onEdit }) => {
         </div>
       </div>
       
-      <div className="progress-section">
-        <div className="progress-bar-goal">
-          <div 
-            className="progress-goal" 
-            style={{ 
-              width: `${goal.progress}%`,
-              backgroundColor: getProgressColor()
-            }}
-          >
-            {isInProgress && <span className="progress-text">{goal.progress}%</span>}
-          </div>
-        </div>
-        
-        <div className="progress-info">
-          <span className="progress-label">{getProgressText()}</span>
-          {goal.progress < 100 && (
-            <span className="progress-days">
-              {goal.progress > 0 ? 
-                `${Math.floor(21 * (goal.progress / 100))} of 21 days` : 
-                'Start tracking your sleep to make progress'}
-            </span>
+      <div className="goal-progress-container">
+        <div 
+          className="goal-progress-bar" 
+          style={{ 
+            width: `${goal.progress}%`,
+            backgroundColor: getProgressColor() 
+          }}
+        >
+          {goal.progress > 0 && (
+            <FaStar className="progress-star" />
           )}
         </div>
       </div>
       
-      {goal.progress === 100 && !claimed && (
-        <button className="rewards-button" onClick={handleEarnPoints}>
+      <div className="progress-info">
+        <span className="progress-label">
+          {goal.progress >= 100 ? 'Goal Complete!' : `${goal.progress}% complete`}
+        </span>
+        <span className="progress-days">
+          {goal.progress > 0 ? 
+            `${Math.floor(21 * (goal.progress / 100))} of 21 days` : 
+            'Start tracking your sleep to make progress'
+          }
+        </span>
+      </div>
+      
+      {goal.progress === 100 && !goal.pointsAwarded && !claimed && (
+        <button className="rewards-button" onClick={handleClaimPoints}>
           <FaCheck className="check-icon" /> CLAIM {goal.points || 400} POINTS
         </button>
       )}

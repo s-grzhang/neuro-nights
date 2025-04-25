@@ -166,12 +166,6 @@ const AppContent = () => {
         <Route path="/subscription" element={
           isAuthenticated ? <SubscriptionPage /> : <Navigate to="/" state={{ openLoginModal: true }} />
         } />
-        <Route path="/games/brain-builder" element={
-          isAuthenticated ? <BrainBuilder userId={userId} userData={userData} updateUserData={updateUserData} /> : <Navigate to="/" state={{ openLoginModal: true }} />
-        } />
-        <Route path="/games/circadian-rhythm-racer" element={
-          isAuthenticated ? <CircadianRhythmRacer userId={userId} userData={userData} updateUserData={updateUserData} /> : <Navigate to="/" state={{ openLoginModal: true }} />
-        } />
       </Routes>
 
       {/* Login Modal */}

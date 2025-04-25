@@ -88,13 +88,15 @@
   padding: 20px;
   width: 100%;
   max-width: 600px;
+  margin: 0 auto;
 }
 
 /* Current Goals section title */
 .current-goals h2 {
   font-size: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   color: #333;
+  text-align: center;
 }
 
 /* Individual goal items in Current Goals */
@@ -102,17 +104,10 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 15px;
-  margin-bottom: 15px;
-  background-color: #f7f7f7;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-.goal-item.completed {
-  background-color: #e8f5e9;
-  border-left: 4px solid #4CAF50;
+  padding: 5px 0 25px 0;
+  margin-bottom: 25px;
+  width: 100%;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .goal-header {
@@ -120,7 +115,7 @@
   justify-content: space-between;
   width: 100%;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
 }
 
 .goal-text {
@@ -140,7 +135,7 @@
   cursor: pointer;
   font-size: 18px;
   color: #2196F3;
-  margin-right: 10px;
+  margin-right: 15px;
 }
 
 .edit-icon:hover {
@@ -158,39 +153,33 @@
   color: #e53935;
 }
 
-/* Progress section */
-.progress-section {
+/* Goal progress container - similar to home page rewards bar */
+.goal-progress-container {
+  position: relative;
   width: 100%;
-  margin-bottom: 10px;
+  height: 25px;
+  background-color: #fff;
+  margin: 0 auto 10px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 /* Progress bar styling */
-.progress-bar-goal {
-  width: 100%;
-  background-color: #e0e0e0;
-  height: 12px;
-  border-radius: 6px;
-  overflow: hidden;
-  margin-bottom: 8px;
-}
-
-/* Progress within the progress bar */
-.progress-goal {
+.goal-progress-bar {
   height: 100%;
-  background-color: #FF9800;
-  transition: width 0.6s ease, background-color 0.6s ease;
-  position: relative;
+  background-color: #FFFFC5; /* Same yellow color as home page */
+  transition: width 0.6s ease;
   display: flex;
+  justify-content: flex-end;
   align-items: center;
-  justify-content: center;
 }
 
-.progress-text {
-  position: absolute;
-  font-size: 10px;
-  font-weight: bold;
-  color: white;
-  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+/* Star in progress bar */
+.progress-star {
+  color: #FFD700; /* Gold star color */
+  font-size: 18px;
+  margin-right: -8px;
 }
 
 .progress-info {
@@ -198,6 +187,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  margin-top: 5px;
 }
 
 .progress-label {
@@ -211,9 +201,29 @@
   color: #757575;
 }
 
-/* Prevent margin-bottom on the last goal item */
-.goal-item:last-child {
-  margin-bottom: 0;
+/* Rewards button styling */
+.rewards-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+
+.rewards-button:hover {
+  background-color: #388E3C;
+}
+
+.check-icon {
+  margin-right: 8px;
 }
 
 /* New section for setting new goals */
@@ -272,31 +282,6 @@
 
 .goal-box-new .set-button:hover {
   background-color: #e06d00;
-}
-
-/* Rewards button styling */
-.rewards-button {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 15px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s;
-  width: 100%;
-}
-
-.rewards-button:hover {
-  background-color: #388E3C;
-}
-
-.check-icon {
-  margin-right: 8px;
 }
 
 /* Claimed message */
