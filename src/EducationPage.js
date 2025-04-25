@@ -19,7 +19,7 @@ import CircadianRhythmRacer from './games/CircadianRhythmRacer/CircadianRhythmRa
 const SleepyBrainSimulator = ({ onBackToEducation }) => (
   <div className="placeholder-game">
     <h2>Sleepy Brain Simulator</h2>
-    <p>This game is coming soon! Check back later.</p>
+    <p>This game is coming soon! Check back later to experience how a tired brain functions differently.</p>
     <button onClick={onBackToEducation}>Back to Education</button>
   </div>
 );
@@ -27,7 +27,7 @@ const SleepyBrainSimulator = ({ onBackToEducation }) => (
 const DreamDecoder = ({ onBackToEducation }) => (
   <div className="placeholder-game">
     <h2>Dream Decoder</h2>
-    <p>This game is coming soon! Check back later.</p>
+    <p>This game is coming soon! Check back later to learn about dream patterns and what they mean for your brain.</p>
     <button onClick={onBackToEducation}>Back to Education</button>
   </div>
 );
@@ -184,22 +184,15 @@ const EducationPage = ({ userId, userData, updateUserData }) => {
             <div className="game-cards">
               {games.map(game => (
                 <div key={game.id} className="game-card" onClick={() => setActiveGame(game.id)}>
-                  <div className="card-icon-container">
-                    {game.icon}
-                  </div>
-                  <div className="card-content">
-                    <h3>{game.title}</h3>
-                    <p>{game.description}</p>
-                    <div className="card-points">
-                      <span>Earn up to {game.points} points!</span>
-                    </div>
-                  </div>
+                  {game.icon}
+                  <h3>{game.title}</h3>
+                  <p>{game.description}</p>
                   <button className="play-button">Play Now</button>
                 </div>
               ))}
             </div>
 
-            <h2 className="section-title">Sleep Exercise Videos</h2>
+            <h2 className="section-title videos">Sleep Exercise Videos</h2>
             <div className="video-section">
               <div className="main-video-container">
                 <VideoPlayer 
