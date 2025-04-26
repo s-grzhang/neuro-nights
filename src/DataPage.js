@@ -207,7 +207,7 @@ const DataPage = () => {
       tooltip: {
         callbacks: {
           label: function(context) {
-            return `${context.raw.toFixed(1)} hours`;
+            return `${context.raw !== undefined ? context.raw.toFixed(1) : "0.0"} hours`;
           }
         }
       }
@@ -273,7 +273,7 @@ const DataPage = () => {
               <div className="sleep-metrics">
                 <div className="metric">
                   <div className="metric-icon"><FaBed /></div>
-                  <div className="metric-value">{sleepData.duration.toFixed(1)} hrs</div>
+                  <div className="metric-value">{sleepData.duration !== undefined ? sleepData.duration.toFixed(1) : "0.0"} hrs</div>
                   <div className="metric-label">Sleep Duration</div>
                   <div className="metric-sublabel">time between phone drop & pickup</div>
                 </div>

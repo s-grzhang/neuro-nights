@@ -67,13 +67,16 @@
 
 /* Success message */
 .success-message {
-  background-color: #e8f5e9;
-  color: #2e7d32;
+  background-color: #f0e6ff;
+  color: purple;
   padding: 12px;
   border-radius: 5px;
   margin-bottom: 20px;
   text-align: center;
   font-weight: bold;
+  border-left: 4px solid purple;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  animation: fadeIn 0.3s ease-in;
 }
 
 /* Form groups */
@@ -174,7 +177,7 @@
 }
 
 input:checked + .slider {
-  background-color: #FF8C00;
+  background: linear-gradient(to right, blue, purple);
 }
 
 input:disabled + .slider {
@@ -226,13 +229,13 @@ input:checked + .slider:before {
   }
 
 .button.logout {
-  background-color: #f44336;
+  background-color: purple;
   color: white;
   margin-left: auto;
   }
 
 .button.logout:hover {
-  background-color: #d32f2f;
+  background-color: blue
 }
 
 /* Responsive adjustments */
@@ -262,12 +265,12 @@ input:checked + .slider:before {
 }
 
 .privacy-info-message {
-  background-color: #e3f2fd;
-  color: #0277bd;
+  background-color: #ffffd0;
+  color: #8B7300;
   padding: 12px 16px;
   border-radius: 4px;
   margin: 12px 0;
-  border-left: 4px solid #0277bd;
+  border-left: 4px solid #ffd700;
   font-size: 14px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   animation: fadeIn 0.3s ease-in;
