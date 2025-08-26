@@ -1,70 +1,107 @@
-# Getting Started with Create React App
+# NeuroNights
+## Description
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+NeuroNights is an interactive sleep education platform that transforms complex sleep science into engaging, gamified learning experiences. Designed for students, educators, and anyone curious about sleep health, this web application combines evidence-based sleep research with interactive games, goal tracking, and data visualization to help users understand how sleep affects their brain and overall well-being.
 
-## Available Scripts
+### What NeuroNights Can Do
 
-In the project directory, you can run:
+- **Educational Gaming**: Play scientifically-designed games that teach sleep concepts through hands-on interaction
+- **Personalized Goal Setting**: Create and track custom sleep goals for duration, consistency, and bedtime optimization  
+- **Progress Visualization**: Monitor sleep patterns and improvements through interactive charts and data analysis
+- **Reward System**: Earn points for completing educational activities and unlock premium content
+- **Comprehensive Learning**: Access curated videos, interactive PDFs, and evidence-based sleep recommendations
 
-### `npm start`
+### Why Choose NeuroNights?
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Unlike traditional sleep apps that focus solely on tracking, NeuroNights emphasizes **education through engagement**. By gamifying sleep science, users develop a deeper understanding of why sleep matters, not just how much they're getting. The platform bridges the gap between complex neuroscience research and practical sleep health knowledge.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Key Differentiators
 
-### `npm test`
+- **Science-Based**: All content grounded in current sleep research and neuroscience
+- **Interactive Learning**: Games designed around specific learning objectives
+- **Cross-Platform**: Works seamlessly on mobile, tablet, and desktop devices
+- **Privacy-Focused**: Secure data handling with Firebase authentication
+- **Customizable**: Adaptable goals and content based on individual needs
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Perfect for students studying neuroscience, educators teaching about circadian rhythms, parents helping teens establish healthy sleep habits, or anyone wanting to understand the fascinating science behind sleep.
 
-### `npm run build`
+##Roadmap
+Future developments include:
+- Finish Sleepy Brain Simulator & Dream Decoder games
+- Embed books into the app
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Contributing
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+I welcome contributions to NeuroNights! Whether you're interested in fixing bugs, adding new educational games, improving the user interface, or enhancing the sleep science content, your input is valuable.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### How to Contribute
 
-### `npm run eject`
+All contributions must go through me for review to ensure they align with the project's educational goals and maintain code quality. Here's how to get started:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. **Fork the repository** and create your feature branch
+   ```bash
+   git checkout -b feature/AmazingFeature
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. **Set up your development environment**
+   ```bash
+   npm install
+   cp env.example .env.local
+   # Add your Firebase config to .env.local
+   npm run setup-env
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. **Make your changes** following our development guidelines:
+   - Follow React best practices and hooks patterns
+   - Maintain consistent code style and formatting
+   - Write clear, descriptive commit messages
+   - Add comments for complex logic, especially in educational games
+   - Test your changes thoroughly
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+4. **Run quality checks** before submitting:
+   ```bash
+   npm run security-check
+   npm test
+   npm run build
+   ```
 
-## Learn More
+5. **Submit a pull request** with:
+   - Clear description of what your changes do
+   - Screenshots/GIFs for UI changes
+   - Explanation of how changes align with educational objectives
+   - Any relevant testing information
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Types of Contributions Welcome
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Bug fixes** - Help improve the user experience
+- **New educational games** - Expand the learning content
+- **Data visualization improvements** - Enhance sleep tracking features
+- **Educational content** - Add or improve sleep science materials
+- **Performance optimizations** - Speed up the application
+- **Documentation** - Help others understand and contribute
 
-### Code Splitting
+### Guidelines
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **Educational Focus**: All contributions should support the app's mission to educate users about sleep science
+- **Evidence-Based**: Any sleep-related content must be backed by scientific research
+- **User-Friendly**: Changes should improve the user experience and accessibility
+- **Code Quality**: Maintain clean, readable, and well-documented code
 
-### Analyzing the Bundle Size
+### Getting Help
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+If you have questions about contributing or need guidance on implementation:
+- Open an issue to discuss your ideas before starting work
+- Reach out via [birdsrforever@outlook.com](birdsrforever@outlook.com)
+- Check existing issues and pull requests for similar work
 
-### Making a Progressive Web App
+### Code of Conduct
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+By participating in this project, you agree to maintain a respectful and inclusive environment. Be constructive in feedback, patient with newcomers, and focused on creating the best educational experience possible.
 
-### Advanced Configuration
+I review all contributions personally to ensure they meet the project's standards and educational objectives. Thank you for helping make sleep science more accessible and engaging!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Authors and acknowledgement
+The concept of this app was developed with [Amruta Rashinkar](https://github.com/amruta1217).
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## License
+This project is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License - see the [LICENSE](LICENSE) file for details.
