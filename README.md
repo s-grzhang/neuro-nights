@@ -25,7 +25,7 @@ Unlike traditional sleep apps that focus solely on tracking, NeuroNights emphasi
 
 Perfect for students studying neuroscience, educators teaching about circadian rhythms, parents helping teens establish healthy sleep habits, or anyone wanting to understand the fascinating science behind sleep.
 
-##Roadmap
+## Roadmap
 Future developments include:
 - Finish Sleepy Brain Simulator & Dream Decoder games
 - Embed books into the app
