@@ -1,0 +1,181 @@
+.phone-usage-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.phone-usage-page h1 {
+  color: #333;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.phone-usage-page h2 {
+  color: #444;
+  margin: 30px 0 20px;
+  font-weight: 500;
+}
+
+.permission-card {
+  margin: 40px 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+.permission-card .card-title {
+  color: #444;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.permission-card .card-text {
+  margin-bottom: 25px;
+  color: #666;
+  line-height: 1.6;
+}
+
+.timeframe-selector {
+  margin: 25px 0;
+  display: flex;
+  gap: 10px;
+}
+
+.timeframe-selector .btn {
+  min-width: 90px;
+}
+
+.loading-indicator {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-style: italic;
+}
+
+.stat-card {
+  height: 100%;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  margin-bottom: 20px;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.pickup-card {
+  border-top: 4px solid #3498db;
+}
+
+.sleep-card {
+  border-top: 4px solid #9b59b6;
+}
+
+.night-card {
+  border-top: 4px solid #e74c3c;
+}
+
+.stat-card .card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 15px;
+}
+
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.stat-label {
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.stat-secondary {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.stat-secondary-label {
+  color: #777;
+}
+
+.data-table-container {
+  overflow-x: auto;
+  margin-bottom: 30px;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th {
+  background-color: #f8f9fa;
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #444;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.data-table td {
+  padding: 12px;
+  border-bottom: 1px solid #dee2e6;
+  color: #666;
+}
+
+.data-table tr:hover {
+  background-color: #f8f9fa;
+}
+
+.no-data {
+  text-align: center;
+  font-style: italic;
+  color: #888;
+  padding: 30px 0;
+}
+
+.info-card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.info-card .card-title {
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 15px;
+}
+
+.tips-list {
+  padding-left: 20px;
+}
+
+.tips-list li {
+  margin-bottom: 10px;
+  color: #666;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .stat-card {
+    margin-bottom: 20px;
+  }
+  
+  .timeframe-selector {
+    flex-wrap: wrap;
+  }
+  
+  .data-table th, 
+  .data-table td {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+} 

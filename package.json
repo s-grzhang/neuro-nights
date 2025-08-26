@@ -1,0 +1,77 @@
+{
+  "name": "neuro-nights",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "/",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.7.2",
+    "@react-pdf-viewer/core": "^3.12.0",
+    "axios": "^1.8.4",
+    "chart.js": "^4.4.7",
+    "cra-template": "1.2.0",
+    "firebase": "^11.4.0",
+    "fs-extra": "^11.3.0",
+    "mkdirp": "^3.0.1",
+    "path": "^0.12.7",
+    "pdfjs-dist": "^2.14.305",
+    "react": "^18.3.1",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.4.0",
+    "react-pdf": "^5.7.2",
+    "react-pdf-viewer": "^0.1.0",
+    "react-router-dom": "^6.4.3",
+    "react-scripts": "^5.0.1",
+    "web-vitals": "^4.2.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "CI=false react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "setup-env": "node scripts/setup-env.js",
+    "validate-env": "node scripts/setup-env.js",
+    "security-check": "npm audit && npm run validate-env",
+    "clean-build": "rm -rf build",
+    "secure-build": "npm run clean-build && npm run security-check && npm run build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/preset-env": "^7.26.0",
+    "gh-pages": "^6.3.0"
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s-grzhang/neuro-nights.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/s-grzhang/neuro-nights/issues"
+  }
+}
